@@ -6,7 +6,6 @@
 
 void ParentRoutine(const char* pathToChild){
     std::string fileName;
-    //std::cout << "Enter the file name: ";
     getline(std::cin, fileName);
    
     int fd_1[2];
@@ -36,7 +35,6 @@ void ParentRoutine(const char* pathToChild){
         close(fd_2[1]); //закрываем запись в pipe2
 
         std::string str;
-        //std::cout << "Enter strings:" << std::endl;
         while (std::getline(std::cin, str)) { //считываем строку с консоли и записываем в pipe1
             write(fd_1[1], str.c_str(), str.length());
             write(fd_1[1],"\n", 1);
@@ -46,6 +44,6 @@ void ParentRoutine(const char* pathToChild){
         ReadFromPipe2(fd_2[0]);
         close(fd_2[0]);
 
-        wait(nullptr);
+        wait(NULL);
     }
 }

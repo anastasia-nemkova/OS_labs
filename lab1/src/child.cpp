@@ -5,7 +5,7 @@ int main(const int argc, const char* argv[]) {
         perror("Necessary arguments were not provided");
         exit(EXIT_FAILURE);
     }
-    std::string fileName = argv[1];
+    const char* fileName = argv[1];
     std::ofstream out(fileName);
     if(!out.is_open()) {
         perror("Error open");
@@ -13,7 +13,6 @@ int main(const int argc, const char* argv[]) {
     }
     std::string str;
     while (std::getline(std::cin, str)) {
-        // Проверяем, начинается ли строка с заглавной буквы
         if (StartsWithCapital(str)) {
             out << str << std::endl;
         } else {
@@ -21,8 +20,5 @@ int main(const int argc, const char* argv[]) {
             std::cout << error << std::endl;
         }
     }
-
-    out.close();
     exit(EXIT_FAILURE);
-}  
- 
+}   
