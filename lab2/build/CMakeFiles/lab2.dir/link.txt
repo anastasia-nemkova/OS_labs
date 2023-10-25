@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/lab2.dir/main.o CMakeFiles/lab2.dir/src/bitonic-sort.o  -o lab2  -pthread 
