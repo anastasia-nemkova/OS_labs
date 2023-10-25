@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <bitonic-sort.hpp>
+#include <cmath>
 #include <chrono>
 
 std::vector<int> GenerateArray(int n) {
@@ -15,19 +16,22 @@ std::vector<int> GenerateArray(int n) {
 
 TEST(SecondLabTests, SingleThreadSort) {
     std::vector<int> a = {4, 5, 3, 1};
-    std::vector<int> a1 = {1, 3, 4, 5};
+    std::vector<int> a_sorted = a;
+    std::sort(a_sorted.begin(), a_sorted.end());
     sort(a, 1, 1);
-    EXPECT_EQ(a, a1);
+    EXPECT_EQ(a, a_sorted);
 
     std::vector<int> b = {8, 6, 1, 4, 2, 9, 1, 4};
-    std::vector<int> b1 = {1, 1, 2, 4, 4, 6, 8, 9};
+    std::vector<int> b_sorted = b;
+    std::sort(b_sorted.begin(), b_sorted.end());
     sort(b, 1, 1);
-    EXPECT_EQ(b, b1);
+    EXPECT_EQ(b,  b_sorted);
     
     std::vector<int> c = {8, 6, 1, 4, 2, 9, 1, 4};
-    std::vector<int> c1 = {9, 8, 6, 4, 4, 2, 1, 1};
+    std::vector<int> c_sorted = c;
+    std::sort(c_sorted.begin(), c_sorted.end(), std::greater<int>());
     sort(c, 0, 1);
-    EXPECT_EQ(c, c1);
+    EXPECT_EQ(c, c_sorted);
 }
 
 TEST(SecondLabTest, MultithreadedSort) {
@@ -35,11 +39,8 @@ TEST(SecondLabTest, MultithreadedSort) {
         auto result = GenerateArray(n);
         auto sorted = result;
         sort(result, 1, maxThreadCount);
-
-        for(int i = 2; i < maxThreadCount; ++i) {
-            sort(sorted, 1, i);
-            EXPECT_EQ(sorted, result);
-        }
+        std::sort(sorted.begin(), sorted.end());
+        EXPECT_EQ(sorted, result);
     };
 
     performTestForGivenSize(4, 2);
@@ -50,12 +51,13 @@ TEST(SecondLabTest, MultithreadedSort) {
 
 TEST(SecondLabTest, TimeSort) {
     auto getAvgTime = [](int threadCount) {
-        auto arr = GenerateArray(8388608);
+        int size_arr = std::pow(2, 23);
+        auto arr = GenerateArray(size_arr);
 
         auto begin = std::chrono::high_resolution_clock::now();
         sort(arr, 1, threadCount);
         auto end = std::chrono::high_resolution_clock::now();
-        double result= std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
+        double result = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
         return result;
     };
 
