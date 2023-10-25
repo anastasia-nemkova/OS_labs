@@ -4,8 +4,6 @@
 #include <vector>
 #include <pthread.h>
 
-extern pthread_mutex_t mtx;
-
 struct Data {
     std::vector<int>& a;
     int low; // нижний индекс массива
