@@ -1,0 +1,74 @@
+#include <gtest/gtest.h>
+
+#include <bitonic-sort.hpp>
+#include <chrono>
+
+std::vector<int> GenerateArray(int n) {
+    std::vector<int> result(n);
+    srand(static_cast<unsigned>(time(nullptr)));
+    for(int i = 0; i < n; ++i) {
+        result[i] = std::rand() % 100;
+    }
+    return result;
+}
+
+
+TEST(SecondLabTests, SingleThreadSort) {
+    std::vector<int> a = {4, 5, 3, 1};
+    std::vector<int> a1 = {1, 3, 4, 5};
+    sort(a, 1, 1);
+    EXPECT_EQ(a, a1);
+
+    std::vector<int> b = {8, 6, 1, 4, 2, 9, 1, 4};
+    std::vector<int> b1 = {1, 1, 2, 4, 4, 6, 8, 9};
+    sort(b, 1, 1);
+    EXPECT_EQ(b, b1);
+    
+    std::vector<int> c = {8, 6, 1, 4, 2, 9, 1, 4};
+    std::vector<int> c1 = {9, 8, 6, 4, 4, 2, 1, 1};
+    sort(c, 0, 1);
+    EXPECT_EQ(c, c1);
+}
+
+TEST(SecondLabTest, MultithreadedSort) {
+    auto performTestForGivenSize = [](int n, int maxThreadCount) {
+        auto result = GenerateArray(n);
+        auto sorted = result;
+        sort(result, 1, maxThreadCount);
+
+        for(int i = 2; i < maxThreadCount; ++i) {
+            sort(sorted, 1, i);
+            EXPECT_EQ(sorted, result);
+        }
+    };
+
+    performTestForGivenSize(4, 2);
+    performTestForGivenSize(8, 4);
+    performTestForGivenSize(1024, 6);
+    performTestForGivenSize(32768, 10);
+}
+
+TEST(SecondLabTest, TimeSort) {
+    auto getAvgTime = [](int threadCount) {
+        auto arr = GenerateArray(8388608);
+
+        auto begin = std::chrono::high_resolution_clock::now();
+        sort(arr, 1, threadCount);
+        auto end = std::chrono::high_resolution_clock::now();
+        double result= std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
+        return result;
+    };
+
+    auto singleThread = getAvgTime(1);
+    auto multiThread = getAvgTime(4);
+
+    std::cout << "Avg time for 1 thread: " << singleThread << '\n';
+    std::cout << "Avg time for 4 threads: " << multiThread << '\n';
+
+    EXPECT_GE(singleThread, multiThread);
+}
+
+int main(int argc, char **argv) {
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
