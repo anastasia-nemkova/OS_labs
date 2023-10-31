@@ -1,0 +1,4 @@
+/home/arnemkova/OS_labs/lab3/build/CMakeFiles/rebuild_cache.dir
+/home/arnemkova/OS_labs/lab3/build/CMakeFiles/child3.dir
+/home/arnemkova/OS_labs/lab3/build/CMakeFiles/edit_cache.dir
+/home/arnemkova/OS_labs/lab3/build/CMakeFiles/lab3.dir

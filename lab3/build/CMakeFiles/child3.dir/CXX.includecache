@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/utils.hpp
+iostream
+-
+string
+-
+fstream
+-
+stdlib.h
+-
+unistd.h
+-
+sys/types.h
+-
+sys/wait.h
+-
+sys/mman.h
+-
+semaphore.h
+-
+fcntl.h
+-
+cstring
+-
+cctype
+-
+vector
+-
+
+/home/arnemkova/OS_labs/lab3/src/child.cpp
+utils.hpp
+/home/arnemkova/OS_labs/lab3/src/utils.hpp
+
+/home/arnemkova/OS_labs/lab3/src/utils.cpp
+utils.hpp
+/home/arnemkova/OS_labs/lab3/src/utils.hpp
+
