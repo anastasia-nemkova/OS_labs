@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/child.dir/src/child.cpp.o CMakeFiles/child.dir/src/utils.cpp.o  -o child  -lpthread -lrt 

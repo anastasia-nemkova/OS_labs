@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/lab3.dir/main.o CMakeFiles/lab3.dir/src/parent.o CMakeFiles/lab3.dir/src/utils.o  -o lab3  -lrt -lpthread 
