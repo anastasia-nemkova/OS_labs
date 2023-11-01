@@ -13,9 +13,10 @@
 #include <cstring>
 #include <cctype>
 #include <vector>
+#include <string_view>
 
 pid_t CreateChildProcess();
-bool StartsWithCapital(const std::string& str);
-int OpenSharedMemory(const char* SHARED_MEMORY_NAME, int SIZE);
-char* MapSharedMemory(int SIZE, int fd);
-sem_t* OpenSemaphore(const char* SEMAPHORE_NAME);
+bool StartsWithCapital(const std::string_view& str);
+int OpenSharedMemory(const char* sharedMemoryName, int size);
+char* MapSharedMemory(int size, int fd);
+sem_t* OpenSemaphore(const char* semaphoreName);
