@@ -33,7 +33,7 @@ int main(const int argc, const char* argv[]) {
     sem_wait(semaphore);
 
     std::string_view str(shared_memory_ptr);
-    if (!StartsWithCapital(str)) {
+    if (StartsWithCapital(str)) {
         out << str << std::endl;
     } else {
         strcpy(response_memory_ptr, "ERROR");
