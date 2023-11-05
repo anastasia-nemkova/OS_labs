@@ -21,12 +21,18 @@ void ParentRoutine(const char* pathToChild){
     int response_fd = OpenSharedMemory(RESPONSE_MEMORY_NAME, SIZE);
     char* shared_memory_ptr = MapSharedMemory(SIZE, shared_memory_fd);
     char* response_memory_ptr = MapSharedMemory(SIZE, response_fd);
-    sem_t* semaphore = sem_open(SEMAPHORE_NAME, O_CREAT, S_IRUSR | S_IWUSR, 1); 
+    sem_t* semaphore = sem_open(SEMAPHORE_NAME, O_CREAT, S_IRUSR | S_IWUSR, 0); 
     sem_t* response_semaphore = sem_open(RESPONSE_SEMAPHORE_NAME, O_CREAT, S_IRUSR | S_IWUSR, 0);
-    
+
     if (semaphore == SEM_FAILED || response_semaphore == SEM_FAILED) {
         perror("Error opening semaphores");
         exit(EXIT_FAILURE);
+    }
+
+    std::vector<std::string> lines;
+    std::string str;
+    while (std::getline(std::cin, str) && !str.empty()) {
+        lines.push_back(str);
     }
 
     pid_t pid = CreateChildProcess();
@@ -36,26 +42,22 @@ void ParentRoutine(const char* pathToChild){
         perror("Exec failed");
         exit(EXIT_FAILURE);
     } else {
-        std::vector<std::string> lines;
-        std::string str;
-        while (std::getline(std::cin, str) && !str.empty()) {
-            lines.push_back(str);
-        }
-
         for (const std::string& line : lines) {
-            sem_wait(semaphore);
             strcpy(shared_memory_ptr, line.c_str());
             sem_post(semaphore);
 
             sem_wait(response_semaphore);
             if (strcmp(response_memory_ptr, "ERROR") == 0) {
                 std::cerr << "Error: " << line << std::endl;
+                strcpy(response_memory_ptr, "");
             }
-            sem_post(response_semaphore);
         }
 
-        wait(nullptr); 
+        strcpy(shared_memory_ptr, "");
+        sem_post(semaphore);
     }
+
+    wait(nullptr);
 
     sem_close(semaphore);
     sem_close(response_semaphore);
