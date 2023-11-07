@@ -9,7 +9,7 @@ pid_t CreateChildProcess() {
     return pid;
 }
 
-bool StartsWithCapital(const std::string_view& str) {
+bool StartsWithCapital(const std::string_view str) {
     return !str.empty() && isupper(str[0]);
 }
 
@@ -38,7 +38,7 @@ char* MapSharedMemory(int size, int fd) {
 }
 
 sem_t* OpenSemaphore(const char* semaphoreName) {
-    sem_t* semaphore = sem_open(semaphoreName, O_CREAT, S_IRUSR | S_IWUSR, 1);
+    sem_t* semaphore = sem_open(semaphoreName, O_CREAT, S_IRUSR | S_IWUSR, 0);
     if (semaphore == SEM_FAILED) {
         perror("Can't open semaphore");
         exit(-1);
