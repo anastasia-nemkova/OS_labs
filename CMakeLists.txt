@@ -13,5 +13,11 @@ endif()
 include(FindThreads)
 
 add_subdirectory(lab1)
+<<<<<<< Updated upstream
+=======
+add_subdirectory(lab2)
+add_subdirectory(lab3)
+add_subdirectory(lab4)
+>>>>>>> Stashed changes
 
 add_subdirectory(tests)

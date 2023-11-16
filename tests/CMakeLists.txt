@@ -13,6 +13,8 @@ target_link_libraries(GTest::GTest INTERFACE gtest_main)
 
 set(CMAKE_CXX_STANDARD 17)
 
+#add LAB1
+
 add_executable(lab1_test lab1_test.cpp ../lab1/src/parent.cpp ../lab1/include/parent.hpp
         ../lab1/src/utils.cpp ../lab1/include/utils.hpp)
 
@@ -20,3 +22,43 @@ target_link_libraries(lab1_test PRIVATE GTest::GTest)
 target_include_directories(lab1_test PRIVATE ../lab1/include)
 
 add_test(lab1_test lab1_test)
+add_test(lab1_test lab1_test)
+
+#add LAB2
+
+add_executable(lab2_test lab2_test.cpp ../lab2/src/bitonic-sort.cpp ../lab2/include/bitonic-sort.hpp)
+
+target_link_libraries(lab2_test PRIVATE GTest::GTest)
+target_include_directories(lab2_test PRIVATE ../lab2/include)
+
+add_test(lab2_test lab2_test)
+
+#add LAB3
+
+add_executable(lab3_test lab3_test.cpp ../lab3/src/parent.cpp ../lab3/include/parent.hpp
+        ../lab3/src/utils.cpp ../lab3/include/utils.hpp)
+
+target_link_libraries(lab3_test PRIVATE GTest::GTest)
+target_include_directories(lab3_test PRIVATE ../lab3/include)
+target_link_libraries(lab3_test PRIVATE pthread)
+target_link_libraries(lab3_test PRIVATE rt)
+
+add_test(lab3_test lab3_test)
+
+#add LAB4
+
+add_executable(lab4_static_test lab4_static_test.cpp ../lab4/include/realizations.hpp ../lab4/src/realization1.cpp)
+target_link_libraries(lab4_static_test PRIVATE GTest::GTest)
+target_include_directories(lab4_static_test PRIVATE ../lab4/include)
+
+add_test(lab4_static_test lab4_static_test)
+
+set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/lab4/include)
+
+add_executable(lab4_dynamic_test lab4_dynamic_test.cpp)
+target_link_libraries(lab4_dynamic_test PRIVATE GTest::GTest)
+target_link_libraries(lab4_dynamic_test PRIVATE dl)
+target_include_directories(lab4_dynamic_test PRIVATE ${INCLUDE_DIR})
+
+add_test(lab4_dynamic_test lab4_dynamic_test)
+
