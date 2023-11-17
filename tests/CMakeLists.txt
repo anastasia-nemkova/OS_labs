@@ -22,7 +22,6 @@ target_link_libraries(lab1_test PRIVATE GTest::GTest)
 target_include_directories(lab1_test PRIVATE ../lab1/include)
 
 add_test(lab1_test lab1_test)
-add_test(lab1_test lab1_test)
 
 #add LAB2
 
@@ -47,18 +46,15 @@ add_test(lab3_test lab3_test)
 
 #add LAB4
 
-add_executable(lab4_static_test lab4_static_test.cpp ../lab4/include/realizations.hpp ../lab4/src/realization1.cpp)
-target_link_libraries(lab4_static_test PRIVATE GTest::GTest)
-target_include_directories(lab4_static_test PRIVATE ../lab4/include)
+add_executable(lab4_realiz1_test lab4_realiz1_test.cpp ../lab4/include/realizations.hpp ../lab4/src/realization1.cpp)
+target_link_libraries(lab4_realiz1_test PRIVATE GTest::GTest)
+target_include_directories(lab4_realiz1_test PRIVATE ../lab4/include)
 
-add_test(lab4_static_test lab4_static_test)
+add_test(lab4_realiz1_test lab4_realiz1_test)
 
-set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/lab4/include)
+add_executable(lab4_realiz2_test lab4_realiz2_test.cpp ../lab4/include/realizations.hpp ../lab4/src/realization2.cpp)
+target_link_libraries(lab4_realiz2_test PRIVATE GTest::GTest)
+target_include_directories(lab4_realiz2_test PRIVATE ../lab4/include)
 
-add_executable(lab4_dynamic_test lab4_dynamic_test.cpp)
-target_link_libraries(lab4_dynamic_test PRIVATE GTest::GTest)
-target_link_libraries(lab4_dynamic_test PRIVATE dl)
-target_include_directories(lab4_dynamic_test PRIVATE ${INCLUDE_DIR})
-
-add_test(lab4_dynamic_test lab4_dynamic_test)
+add_test(lab4_realiz2_test lab4_realiz2_test)
 

@@ -3,12 +3,12 @@
 
 TEST(FourthLabTest, DerivativeStaticTest) {
     float result = Derivative(0.0, 0.1);
-    ASSERT_FLOAT_EQ(result, -0.049958348);
+    EXPECT_FLOAT_EQ(result, -0.049958348);
 }
 
 TEST(FourthLabTest, SquareStaticTest) {
     float result = Square(2.0, 3.0);
-    ASSERT_FLOAT_EQ(result, 6.0);
+    EXPECT_FLOAT_EQ(result, 6.0);
 }
 
 int main(int argc, char **argv) {
