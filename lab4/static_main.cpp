@@ -1,4 +1,4 @@
-#include "/home/arnemkova/OS_labs/lab4/include/realizations.hpp"
+#include "realizations.hpp"
 
 #include <iostream>
 #include <sstream>
