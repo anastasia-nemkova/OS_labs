@@ -10,9 +10,10 @@ FetchContent_MakeAvailable(googletest)
 add_library(GTest::GTest INTERFACE IMPORTED)
 target_link_libraries(GTest::GTest INTERFACE gtest_main)
 
-#add LAB1
 
 set(CMAKE_CXX_STANDARD 17)
+
+#add LAB1
 
 add_executable(lab1_test lab1_test.cpp ../lab1/src/parent.cpp ../lab1/include/parent.hpp
         ../lab1/src/utils.cpp ../lab1/include/utils.hpp)
@@ -27,7 +28,6 @@ add_test(lab1_test lab1_test)
 add_executable(lab2_test lab2_test.cpp ../lab2/src/bitonic-sort.cpp ../lab2/include/bitonic-sort.hpp)
 
 target_link_libraries(lab2_test PRIVATE GTest::GTest)
-
 target_include_directories(lab2_test PRIVATE ../lab2/include)
 
 add_test(lab2_test lab2_test)
@@ -42,6 +42,19 @@ target_include_directories(lab3_test PRIVATE ../lab3/include)
 target_link_libraries(lab3_test PRIVATE pthread)
 target_link_libraries(lab3_test PRIVATE rt)
 
-
-
 add_test(lab3_test lab3_test)
+
+#add LAB4
+
+add_executable(lab4_realiz1_test lab4_realiz1_test.cpp ../lab4/include/realizations.hpp ../lab4/src/realization1.cpp)
+target_link_libraries(lab4_realiz1_test PRIVATE GTest::GTest)
+target_include_directories(lab4_realiz1_test PRIVATE ../lab4/include)
+
+add_test(lab4_realiz1_test lab4_realiz1_test)
+
+add_executable(lab4_realiz2_test lab4_realiz2_test.cpp ../lab4/include/realizations.hpp ../lab4/src/realization2.cpp)
+target_link_libraries(lab4_realiz2_test PRIVATE GTest::GTest)
+target_include_directories(lab4_realiz2_test PRIVATE ../lab4/include)
+
+add_test(lab4_realiz2_test lab4_realiz2_test)
+
