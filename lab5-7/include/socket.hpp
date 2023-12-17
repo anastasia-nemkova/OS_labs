@@ -9,7 +9,7 @@
 #include <unordered_map>
 #include <optional>
 
-const int MAIN_PORT = 4040;
+constexpr int MAIN_PORT = 4040;
 
 void sendMessage(zmq::socket_t& socket, const std::string& msg);
 std::string receiveMessage(zmq::socket_t& socket);

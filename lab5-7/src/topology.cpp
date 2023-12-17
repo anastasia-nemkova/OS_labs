@@ -5,19 +5,18 @@ void Topology::insert(int id, int parentId) {
         std::list<int> newList;
         newList.push_back(id);
         list.push_back(newList);
+        return;
     }
-    else {
-        int listId = find(parentId);
-        if (listId == -1) {
-            throw std::runtime_error("Wrong parent id");
-        }
-        auto it1 = list.begin();
-        std::advance(it1, listId);
-        for (auto it2 = it1->begin(); it2 != it1->end(); ++it2) {
-            if (*it2 == parentId) {
-                it1->insert(++it2, id);
-                return;
-            }
+    int listId = find(parentId);
+    if (listId == -1) {
+        throw std::runtime_error("Wrong parent id");
+    }
+    auto it1 = list.begin();
+    std::advance(it1, listId);
+    for (auto it2 = it1->begin(); it2 != it1->end(); ++it2) {
+        if (*it2 == parentId) {
+            it1->insert(++it2, id);
+            return;
         }
     }
 }
