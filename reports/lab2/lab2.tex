@@ -1,0 +1,257 @@
+\documentclass[a4paper, 14pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,     
+    urlcolor=black,
+}
+\usepackage[english,russian]{babel}
+\usepackage{setspace}
+\singlespacing
+\usepackage{soulutf8}
+\usepackage{indentfirst}
+\usepackage[top=30mm]{geometry}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0mm}
+\usepackage{tocloft}
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+
+
+\lstdefinestyle{mystyle}{
+    language=C++,
+    commentstyle=\color{YellowGreen},
+    keywordstyle=\color{RedViolet},
+    numberstyle=\tiny\color{Grey},
+    stringstyle=\color{BurntOrange},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4,
+    literate=
+        {а}{{\selectfont\char224}}1
+        {б}{{\selectfont\char225}}1
+        {в}{{\selectfont\char226}}1
+        {г}{{\selectfont\char227}}1
+        {д}{{\selectfont\char228}}1
+        {е}{{\selectfont\char229}}1
+        {ё}{{\"e}}1
+        {ж}{{\selectfont\char230}}1
+        {з}{{\selectfont\char231}}1
+        {и}{{\selectfont\char232}}1
+        {й}{{\selectfont\char233}}1
+        {к}{{\selectfont\char234}}1
+        {л}{{\selectfont\char235}}1
+        {м}{{\selectfont\char236}}1
+        {н}{{\selectfont\char237}}1
+        {о}{{\selectfont\char238}}1
+        {п}{{\selectfont\char239}}1
+        {р}{{\selectfont\char240}}1
+        {с}{{\selectfont\char241}}1
+        {т}{{\selectfont\char242}}1
+        {у}{{\selectfont\char243}}1
+        {ф}{{\selectfont\char244}}1
+        {х}{{\selectfont\char245}}1
+        {ц}{{\selectfont\char246}}1
+        {ч}{{\selectfont\char247}}1
+        {ш}{{\selectfont\char248}}1
+        {щ}{{\selectfont\char249}}1
+        {ъ}{{\selectfont\char250}}1
+        {ы}{{\selectfont\char251}}1
+        {ь}{{\selectfont\char252}}1
+        {э}{{\selectfont\char253}}1
+        {ю}{{\selectfont\char254}}1
+        {я}{{\selectfont\char255}}1
+        {А}{{\selectfont\char192}}1
+        {Б}{{\selectfont\char193}}1
+        {В}{{\selectfont\char194}}1
+        {Г}{{\selectfont\char195}}1
+        {Д}{{\selectfont\char196}}1
+        {Е}{{\selectfont\char197}}1
+        {Ё}{{\"E}}1
+        {Ж}{{\selectfont\char198}}1
+        {З}{{\selectfont\char199}}1
+        {И}{{\selectfont\char200}}1
+        {Й}{{\selectfont\char201}}1
+        {К}{{\selectfont\char202}}1
+        {Л}{{\selectfont\char203}}1
+        {М}{{\selectfont\char204}}1
+        {Н}{{\selectfont\char205}}1
+        {О}{{\selectfont\char206}}1
+        {П}{{\selectfont\char207}}1
+        {Р}{{\selectfont\char208}}1
+        {С}{{\selectfont\char209}}1
+        {Т}{{\selectfont\char210}}1
+        {У}{{\selectfont\char211}}1
+        {Ф}{{\selectfont\char212}}1
+        {Х}{{\selectfont\char213}}1
+        {Ц}{{\selectfont\char214}}1
+        {Ч}{{\selectfont\char215}}1
+        {Ш}{{\selectfont\char216}}1
+        {Щ}{{\selectfont\char217}}1
+        {Ъ}{{\selectfont\char218}}1
+        {Ы}{{\selectfont\char219}}1
+        {Ь}{{\selectfont\char220}}1
+        {Э}{{\selectfont\char221}}1
+        {Ю}{{\selectfont\char222}}1
+        {Я}{{\selectfont\char223}}1
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+\thispagestyle{empty}	
+\begin{center}
+	Московский авиационный институт
+	
+	(Национальный исследовательский университет)
+	
+	Факультет информационных технологий и прикладной математики
+	
+	Кафедра вычислительной математики и программирования
+	
+\end{center}
+\vspace{40ex}
+\begin{center}
+	\textbf{\large{Лабораторная работа №2 по курсу\linebreak \textquotedblleft Операционные системы\textquotedblright}}
+\end{center}
+\vspace{35ex}
+\begin{flushright}
+	\textit{Студент: } Немкова Анастасия Романовна
+	
+	\vspace{2ex}
+	\textit{Группа: } М8О-208Б-22
+	
+	\vspace{2ex}
+	\textit{Преподаватель: } Миронов Евгений Сергеевич
+	
+	\vspace{2ex}
+	\textit{Вариант: 1} 
+	
+	\vspace{2ex}
+	\textit{Оценка: } \underline{\quad\quad\quad\quad\quad\quad}
+	
+	 \vspace{2ex}
+	\textit{Дата: } \underline{\quad\quad\quad\quad\quad\quad}
+	
+	\vspace{2ex}
+	\textit{Подпись: } \underline{\quad\quad\quad\quad\quad\quad}
+	
+\end{flushright}
+
+\vspace{5ex}
+
+\begin{vfill}
+	\begin{center}
+		Москва, 2023
+	\end{center}	
+\end{vfill}
+\newpage
+
+\begin{center}
+\section*{Содержание}   
+\end{center}
+\vspace{5ex}
+\begin{enumerate}
+  \item Репозиторий
+  \item Постановка задачи
+  \item Общие сведения о программе
+  \item Общий метод и алгоритм решения
+  \item Исходный код
+  \item Демонстрация работы программы
+  \item Вывод
+\end{enumerate}
+\newpage
+
+
+\section*{Репозиторий}   
+\vspace{2ex}
+\url{https://github.com/anastasia-nemkova/OS_labs}
+
+\section*{Постановка задачи}   
+\textbf{Цель работы:}
+\vspace{2ex}
+
+Приобретение практических навыков в управлении потоками в ОС и обеспечении синхронизации между потоками
+
+\vspace{4ex}
+\textbf{Задание:}
+\vspace{2ex}
+
+Составить программу на языке Си, обрабатывающую данные в многопоточном режиме. При обработке использовать стандартные средства создания потоков операционной системы (Windows/Unix). Ограничение максимального количества потоков, работающих в один момент времени, должно быть задано ключом запуска вашей программы.\newline
+
+\textit{Вариант 1}: Отсортировать массив целых чисел при помощи битонической сортировки
+
+\section*{Общие сведения о программе}
+Программа компилируется из файлов bitonic-sort.cpp, bitonic-sort.hpp и main.cpp. Также имеются с файл с тестами lab2\texttt{\_}test.cpp. В программе работы были
+использованы следующие системные вызовы:
+
+\begin{itemize}
+    \item pthread\texttt{\_}create() - создание нового потока
+    \item pthread\texttt{\_}join() - ожидание завершения исполнения потока
+\end{itemize}
+
+\section*{Общий метод и алгоритм решения}
+
+Алгоритм битонической сортировки состоит из двух основных этапов: сортировки и слияния. На этапе сортировки считанный массив в функции parallelBitonicSort разбивается на две части, каждая из которых сортируется в отдельном потоке по возрастанию или убыванию(в зависимости от заданного напрвления). После этого происходит слияние отсортированных частей в один массив, который выводится на экран.  
+\newpage
+
+\section*{Исходный код}
+
+\textbf{bitonic-sort.hpp}
+\lstinputlisting{bitonic-sort.hpp}
+
+\textbf{bitonic-sort.cpp}
+\lstinputlisting{bitonic-sort.cpp}
+
+\textbf{main.cpp}
+\lstinputlisting{main.cpp}
+
+\textbf{lab2\texttt{\_}test.cpp}
+\lstinputlisting{lab2_test.cpp}
+\newpage
+
+\section*{Демонстрация работы программы}
+\begin{verbatim}
+arnemkova@LAPTOP-TA2RV74U:~/OS_labs/build$ ./tests/lab2_test
+[==========] Running 3 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 1 test from SecondLabTests
+[ RUN      ] SecondLabTests.SingleThreadSort
+[       OK ] SecondLabTests.SingleThreadSort (0 ms)
+[----------] 1 test from SecondLabTests (0 ms total)
+
+[----------] 2 tests from SecondLabTest
+[ RUN      ] SecondLabTest.MultithreadedSort
+[       OK ] SecondLabTest.MultithreadedSort (16 ms)
+[ RUN      ] SecondLabTest.TimeSort
+Avg time for 1 thread: 14555
+Avg time for 4 threads: 6343
+[       OK ] SecondLabTest.TimeSort (21103 ms)
+[----------] 2 tests from SecondLabTest (21120 ms total)
+
+[----------] Global test environment tear-down
+[==========] 3 tests from 2 test suites ran. (21120 ms total)
+[  PASSED  ] 3 tests.
+\end{verbatim}
+
+\section*{Вывод}
+
+В ходе выполнения лабораторной работы я изучила механизм работы многопоточности с использованием библиотеки pthreads в операционной системе Linux. 
+
+Было выявлено, что ускорение алгоритма и его эффективность зависят от размера входного массива и количества доступных потоков для параллельной обработки. При увеличении размера массива или количества потоков скорость выполнения алгоритма увеличивается, однако при достижении определенного количества потоков или размера массива скорость может перестать увеличиваться из-за расходов на управление потоками и синхронизацию данных.
+
+Также были изучены средства синхронизации такие, как семафор, мьютекс, баррьер, условные переменные, и основные проблемы многопоточности.
+
+\end{document}

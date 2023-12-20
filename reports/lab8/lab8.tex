@@ -1,0 +1,504 @@
+\documentclass[a4paper, 14pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,     
+    urlcolor=black,
+}
+\usepackage[english,russian]{babel}
+\usepackage{setspace}
+\singlespacing
+\usepackage{soulutf8}
+\usepackage{indentfirst}
+\usepackage[top=30mm]{geometry}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0mm}
+\usepackage{tocloft}
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+
+
+\lstdefinestyle{mystyle}{
+    breaklines=true,
+    numbers=none,
+    basicstyle=\ttfamily\color{black},
+    keywordstyle=\color{black},
+    commentstyle=\color{black},
+    stringstyle=\color{black},
+    identifierstyle=\color{black}
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+\thispagestyle{empty}	
+\begin{center}
+	Московский авиационный институт
+	
+	(Национальный исследовательский университет)
+	
+	Факультет информационных технологий и прикладной математики
+	
+	Кафедра вычислительной математики и программирования
+	
+\end{center}
+\vspace{40ex}
+\begin{center}
+	\textbf{\large{Лабораторная работа №8 по курсу\linebreak \textquotedblleft Операционные системы\textquotedblright}}
+\end{center}
+\vspace{35ex}
+\begin{flushright}
+	\textit{Студент: } Немкова Анастасия Романовна
+	
+	\vspace{2ex}
+	\textit{Группа: } М8О-208Б-22
+	
+	\vspace{2ex}
+	\textit{Преподаватель: } Миронов Евгений Сергеевич
+	
+	\vspace{2ex}
+	\textit{Оценка: } \underline{\quad\quad\quad\quad\quad\quad}
+	
+	 \vspace{2ex}
+	\textit{Дата: } \underline{\quad\quad\quad\quad\quad\quad}
+	
+	\vspace{2ex}
+	\textit{Подпись: } \underline{\quad\quad\quad\quad\quad\quad}
+	
+\end{flushright}
+
+\vspace{5ex}
+
+\begin{vfill}
+	\begin{center}
+		Москва, 2023
+	\end{center}	
+\end{vfill}
+\newpage
+
+\begin{center}
+\section*{Содержание}   
+\end{center}
+\vspace{5ex}
+\begin{enumerate}
+  \item Репозиторий
+  \item Постановка задачи
+  \item Общие сведения о strace
+  \item Демонстрация работы
+  \item Описание
+  \item Вывод
+\end{enumerate}
+\newpage
+
+\section*{Репозиторий}   
+\vspace{2ex}
+\url{https://github.com/anastasia-nemkova/OS_labs}
+
+\section*{Постановка задачи}   
+\textbf{Цель работы:}
+\vspace{2ex}
+
+Приобретение практических навыков диагностики работы программного обеспечения.
+
+\vspace{4ex}
+\textbf{Задание:}
+
+Продемонстрировать ключевые системные вызовы, которые в них используются и то, что их использование соответствует варианту ЛР на примере лабораторной работы №3
+
+Используемая утилита для отслеживания системных вызово - strace
+
+\section*{Общие сведения о strace}
+
+Strace - это утилита для отслеживания системных вызовов и сигналов, происходящих во время выполнения программы в операционной системе Linux. Она позволяет отслеживать взаимодействие программы с ядром операционной системы и увидеть, какие системные вызовы выполняются, а также какие сигналы обрабатываются. Strace может быть полезен для отладки программ, исследования их работы или выявления проблем в процессе выполнения.
+
+Для удобства работы с strace можно использовать следующие ключи:
+
+\begin{itemize}
+    \item \textit{-o filename}: можно указать имя файла, в который будут записываться результаты отслеживания вместо стандартного вывода.
+    \item \textit{-c}: позволяет собирать статистику о количестве и времени выполнения каждого типа системных вызовов
+    \item \textit{-t}: добавляет временные метки к выводу strace, показывая время, прошедшее с начала отслеживания.
+    \item \textit{-p pid}: позволяет указать PID процесса, который нужно отслеживать. Это позволяет отслеживать системные вызовы уже запущенного процесса.
+    \item \textit{-e trace=...}: позволяет выбирать, какие типы системных вызовов нужно отслеживать. Например, -e trace=open,close отслеживает только вызовы открытия и закрытия файлов.
+    \item \textit{-f}: заставляет strace отслеживать также вызовы системных функций, выполняемых дочерними процессами.
+\end{itemize}
+
+\section*{Демонстрация работы}
+
+\begin{lstlisting}
+arnemkova@LAPTOP-TA2RV74U:~/OS_labs/build$ strace -f ./lab3/lab3
+execve("./lab3/lab3", ["./lab3/lab3"], 0x7ffe75b4c4b8 /* 42 vars */) = 0
+brk(NULL)                               = 0x561905215000
+arch_prctl(0x3001 /* ARCH_??? */, 0x7ffee376d1b0) = -1 EINVAL (Invalid argument)
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/tls/x86_64/x86_64/librt.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+stat("/opt/ros/noetic/lib/tls/x86_64/x86_64", 0x7ffee376c400) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/tls/x86_64/librt.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+stat("/opt/ros/noetic/lib/tls/x86_64", 0x7ffee376c400) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/tls/x86_64/librt.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+stat("/opt/ros/noetic/lib/tls/x86_64", 0x7ffee376c400) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/tls/librt.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+stat("/opt/ros/noetic/lib/tls", 0x7ffee376c400) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/x86_64/x86_64/librt.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+stat("/opt/ros/noetic/lib/x86_64/x86_64", 0x7ffee376c400) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/x86_64/librt.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+stat("/opt/ros/noetic/lib/x86_64", 0x7ffee376c400) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/x86_64/librt.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+stat("/opt/ros/noetic/lib/x86_64", 0x7ffee376c400) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/librt.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+stat("/opt/ros/noetic/lib", {st_mode=S_IFDIR|0755, st_size=16384, ...}) = 0
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=242252, ...}) = 0
+mmap(NULL, 242252, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7fd809d1e000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/librt.so.1", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0 '\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0644, st_size=35960, ...}) = 0
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fd809d1c000
+mmap(NULL, 39904, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fd809d12000
+mmap(0x7fd809d14000, 16384, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x7fd809d14000
+mmap(0x7fd809d18000, 8192, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x6000) = 0x7fd809d18000
+mmap(0x7fd809d1a000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x7000) = 0x7fd809d1a000
+close(3)                                = 0
+openat(AT_FDCWD, "/opt/ros/noetic/lib/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpthread.so.0", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220q\0\0\0\0\0\0"..., 832) = 832
+pread64(3, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0{E6\364\34\332\245\210\204\10\350-\0106\343="..., 68, 824) = 68
+fstat(3, {st_mode=S_IFREG|0755, st_size=157224, ...}) = 0
+pread64(3, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0{E6\364\34\332\245\210\204\10\350-\0106\343="..., 68, 824) = 68
+mmap(NULL, 140408, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fd809cef000
+mmap(0x7fd809cf5000, 69632, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x6000) = 0x7fd809cf5000
+mmap(0x7fd809d06000, 24576, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x17000) = 0x7fd809d06000
+mmap(0x7fd809d0c000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1c000) = 0x7fd809d0c000
+mmap(0x7fd809d0e000, 13432, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7fd809d0e000
+close(3)                                = 0
+openat(AT_FDCWD, "/opt/ros/noetic/lib/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0`\341\t\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0644, st_size=1956992, ...}) = 0
+mmap(NULL, 1972224, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fd809b0d000
+mprotect(0x7fd809ba3000, 1290240, PROT_NONE) = 0
+mmap(0x7fd809ba3000, 987136, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x96000) = 0x7fd809ba3000
+mmap(0x7fd809c94000, 299008, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x187000) = 0x7fd809c94000
+mmap(0x7fd809cde000, 57344, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1d0000) = 0x7fd809cde000
+mmap(0x7fd809cec000, 10240, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7fd809cec000
+close(3)                                = 0
+openat(AT_FDCWD, "/opt/ros/noetic/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\3405\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0644, st_size=104984, ...}) = 0
+mmap(NULL, 107592, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fd809af2000
+mmap(0x7fd809af5000, 73728, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x3000) = 0x7fd809af5000
+mmap(0x7fd809b07000, 16384, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x15000) = 0x7fd809b07000
+mmap(0x7fd809b0b000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x18000) = 0x7fd809b0b000
+close(3)                                = 0
+openat(AT_FDCWD, "/opt/ros/noetic/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\300A\2\0\0\0\0\0"..., 832) = 832
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+pread64(3, "\4\0\0\0\20\0\0\0\5\0\0\0GNU\0\2\0\0\300\4\0\0\0\3\0\0\0\0\0\0\0", 32, 848) = 32
+pread64(3, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\30x\346\264ur\f|Q\226\236i\253-'o"..., 68, 880) = 68
+fstat(3, {st_mode=S_IFREG|0755, st_size=2029592, ...}) = 0
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+pread64(3, "\4\0\0\0\20\0\0\0\5\0\0\0GNU\0\2\0\0\300\4\0\0\0\3\0\0\0\0\0\0\0", 32, 848) = 32
+pread64(3, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\30x\346\264ur\f|Q\226\236i\253-'o"..., 68, 880) = 68
+mmap(NULL, 2037344, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fd809900000
+mmap(0x7fd809922000, 1540096, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x22000) = 0x7fd809922000
+mmap(0x7fd809a9a000, 319488, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x19a000) = 0x7fd809a9a000
+mmap(0x7fd809ae8000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1e7000) = 0x7fd809ae8000
+mmap(0x7fd809aee000, 13920, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7fd809aee000
+close(3)                                = 0
+openat(AT_FDCWD, "/opt/ros/noetic/lib/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libm.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\300\323\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0644, st_size=1369384, ...}) = 0
+mmap(NULL, 1368336, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fd8097b1000
+mmap(0x7fd8097be000, 684032, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xd000) = 0x7fd8097be000
+mmap(0x7fd809865000, 626688, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xb4000) = 0x7fd809865000
+mmap(0x7fd8098fe000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x14c000) = 0x7fd8098fe000
+close(3)                                = 0
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fd8097af000
+mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fd8097ac000
+arch_prctl(ARCH_SET_FS, 0x7fd8097ac740) = 0
+mprotect(0x7fd809ae8000, 16384, PROT_READ) = 0
+mprotect(0x7fd8098fe000, 4096, PROT_READ) = 0
+mprotect(0x7fd809b0b000, 4096, PROT_READ) = 0
+mprotect(0x7fd809cde000, 45056, PROT_READ) = 0
+mprotect(0x7fd809d0c000, 4096, PROT_READ) = 0
+mprotect(0x7fd809d1a000, 4096, PROT_READ) = 0
+mprotect(0x561903b8e000, 4096, PROT_READ) = 0
+mprotect(0x7fd809d87000, 4096, PROT_READ) = 0
+munmap(0x7fd809d1e000, 242252)          = 0
+set_tid_address(0x7fd8097aca10)         = 32032
+set_robust_list(0x7fd8097aca20, 24)     = 0
+rt_sigaction(SIGRTMIN, {sa_handler=0x7fd809cf5bf0, sa_mask=[], sa_flags=SA_RESTORER|SA_SIGINFO, sa_restorer=0x7fd809d03420}, NULL, 8) = 0
+rt_sigaction(SIGRT_1, {sa_handler=0x7fd809cf5c90, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART|SA_SIGINFO, sa_restorer=0x7fd809d03420}, NULL, 8) = 0
+rt_sigprocmask(SIG_UNBLOCK, [RTMIN RT_1], NULL, 8) = 0
+prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+brk(NULL)                               = 0x561905215000
+brk(0x561905236000)                     = 0x561905236000
+futex(0x7fd809cec6bc, FUTEX_WAKE_PRIVATE, 2147483647) = 0
+futex(0x7fd809cec6c8, FUTEX_WAKE_PRIVATE, 2147483647) = 0
+fstat(0, {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0), ...}) = 0
+read(0, input.txt
+"\321\210\321\202 input.txt\n", 1024) = 15
+statfs("/dev/shm/", {f_type=TMPFS_MAGIC, f_bsize=4096, f_blocks=978216, f_bfree=978216, f_bavail=978216, f_files=978216, f_ffree=978215, f_fsid={val=[3579996579, 1479093750]}, f_namelen=255, f_frsize=4096, f_flags=ST_VALID|ST_NOSUID|ST_NODEV|ST_NOATIME}) = 0
+futex(0x7fd809d11390, FUTEX_WAKE_PRIVATE, 2147483647) = 0
+unlink("/dev/shm/sem.semaphore")        = -1 ENOENT (No such file or directory)
+unlink("/dev/shm/sem.response_semaphore") = -1 ENOENT (No such file or directory)
+unlink("/dev/shm/shared_memory")        = -1 ENOENT (No such file or directory)
+unlink("/dev/shm/response_memory")      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/dev/shm/shared_memory", O_RDWR|O_CREAT|O_NOFOLLOW|O_CLOEXEC, 0600) = 3
+ftruncate(3, 1024)                      = 0
+openat(AT_FDCWD, "/dev/shm/response_memory", O_RDWR|O_CREAT|O_NOFOLLOW|O_CLOEXEC, 0600) = 4
+ftruncate(4, 1024)                      = 0
+mmap(NULL, 1024, PROT_READ|PROT_WRITE, MAP_SHARED, 3, 0) = 0x7fd809d86000
+mmap(NULL, 1024, PROT_READ|PROT_WRITE, MAP_SHARED, 4, 0) = 0x7fd809d59000
+openat(AT_FDCWD, "/dev/shm/sem.semaphore", O_RDWR|O_NOFOLLOW) = -1 ENOENT (No such file or directory)
+getpid()                                = 32032
+lstat("/dev/shm/OvEl2i", 0x7ffee376ce40) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/dev/shm/OvEl2i", O_RDWR|O_CREAT|O_EXCL, 0600) = 5
+write(5, "\0\0\0\0\0\0\0\0\200\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 32) = 32
+mmap(NULL, 32, PROT_READ|PROT_WRITE, MAP_SHARED, 5, 0) = 0x7fd809d58000
+link("/dev/shm/OvEl2i", "/dev/shm/sem.semaphore") = 0
+fstat(5, {st_mode=S_IFREG|0600, st_size=32, ...}) = 0
+unlink("/dev/shm/OvEl2i")               = 0
+close(5)                                = 0
+openat(AT_FDCWD, "/dev/shm/sem.response_semaphore", O_RDWR|O_NOFOLLOW) = -1 ENOENT (No such file or directory)
+getpid()                                = 32032
+lstat("/dev/shm/xvbwMi", 0x7ffee376ce30) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/dev/shm/xvbwMi", O_RDWR|O_CREAT|O_EXCL, 0600) = 5
+write(5, "\0\0\0\0\0\0\0\0\200\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 32) = 32
+mmap(NULL, 32, PROT_READ|PROT_WRITE, MAP_SHARED, 5, 0) = 0x7fd809d57000
+link("/dev/shm/xvbwMi", "/dev/shm/sem.response_semaphore") = 0
+fstat(5, {st_mode=S_IFREG|0600, st_size=32, ...}) = 0
+unlink("/dev/shm/xvbwMi")               = 0
+close(5)                                = 0
+read(0, AAAAAA
+"AAAAAA\n", 1024)               = 7
+read(0, BBBBBB
+"BBBBBB\n", 1024)               = 7
+read(0, aaaaaaaa
+"aaaaaaaa\n", 1024)             = 9
+read(0,
+"\n", 1024)                     = 1
+clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLDstrace: Process 32072 attached
+, child_tidptr=0x7fd8097aca10) = 32072
+[pid 32072] set_robust_list(0x7fd8097aca20, 24 <unfinished ...>
+[pid 32032] futex(0x7fd809d57000, FUTEX_WAIT_BITSET|FUTEX_CLOCK_REALTIME, 0, NULL, FUTEX_BITSET_MATCH_ANY <unfinished ...>
+[pid 32072] <... set_robust_list resumed>) = 0
+[pid 32072] execve("/home/arnemkova/OS_labs/build/lab3/child3", ["/home/arnemkova/OS_labs/build/la"..., "\321\210\321\202 input.txt"], 0x7ffee376d298 /* 42 vars */) = 0
+[pid 32072] brk(NULL)                   = 0x55e404b49000
+[pid 32072] arch_prctl(0x3001 /* ARCH_??? */, 0x7ffd843f4420) = -1 EINVAL (Invalid argument)
+[pid 32072] access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+[pid 32072] openat(AT_FDCWD, "/opt/ros/noetic/lib/tls/x86_64/x86_64/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+[pid 32072] stat("/opt/ros/noetic/lib/tls/x86_64/x86_64", 0x7ffd843f3670) = -1 ENOENT (No such file or directory)
+[pid 32072] openat(AT_FDCWD, "/opt/ros/noetic/lib/tls/x86_64/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+[pid 32072] stat("/opt/ros/noetic/lib/tls/x86_64", 0x7ffd843f3670) = -1 ENOENT (No such file or directory)
+[pid 32072] openat(AT_FDCWD, "/opt/ros/noetic/lib/tls/x86_64/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+[pid 32072] stat("/opt/ros/noetic/lib/tls/x86_64", 0x7ffd843f3670) = -1 ENOENT (No such file or directory)
+[pid 32072] openat(AT_FDCWD, "/opt/ros/noetic/lib/tls/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+[pid 32072] stat("/opt/ros/noetic/lib/tls", 0x7ffd843f3670) = -1 ENOENT (No such file or directory)
+[pid 32072] openat(AT_FDCWD, "/opt/ros/noetic/lib/x86_64/x86_64/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+[pid 32072] stat("/opt/ros/noetic/lib/x86_64/x86_64", 0x7ffd843f3670) = -1 ENOENT (No such file or directory)
+[pid 32072] openat(AT_FDCWD, "/opt/ros/noetic/lib/x86_64/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+[pid 32072] stat("/opt/ros/noetic/lib/x86_64", 0x7ffd843f3670) = -1 ENOENT (No such file or directory)
+[pid 32072] openat(AT_FDCWD, "/opt/ros/noetic/lib/x86_64/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+[pid 32072] stat("/opt/ros/noetic/lib/x86_64", 0x7ffd843f3670) = -1 ENOENT (No such file or directory)
+[pid 32072] openat(AT_FDCWD, "/opt/ros/noetic/lib/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+[pid 32072] stat("/opt/ros/noetic/lib", {st_mode=S_IFDIR|0755, st_size=16384, ...}) = 0
+[pid 32072] openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+[pid 32072] fstat(3, {st_mode=S_IFREG|0644, st_size=242252, ...}) = 0
+[pid 32072] mmap(NULL, 242252, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7fcdeb6bb000
+[pid 32072] close(3)                    = 0
+[pid 32072] openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpthread.so.0", O_RDONLY|O_CLOEXEC) = 3
+[pid 32072] read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220q\0\0\0\0\0\0"..., 832) = 832
+[pid 32072] pread64(3, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0{E6\364\34\332\245\210\204\10\350-\0106\343="..., 68, 824) = 68
+[pid 32072] fstat(3, {st_mode=S_IFREG|0755, st_size=157224, ...}) = 0
+[pid 32072] mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fcdeb6b9000
+[pid 32072] pread64(3, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0{E6\364\34\332\245\210\204\10\350-\0106\343="..., 68, 824) = 68
+[pid 32072] mmap(NULL, 140408, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fcdeb696000
+[pid 32072] mmap(0x7fcdeb69c000, 69632, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x6000) = 0x7fcdeb69c000
+[pid 32072] mmap(0x7fcdeb6ad000, 24576, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x17000) = 0x7fcdeb6ad000
+[pid 32072] mmap(0x7fcdeb6b3000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1c000) = 0x7fcdeb6b3000
+[pid 32072] mmap(0x7fcdeb6b5000, 13432, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7fcdeb6b5000
+[pid 32072] close(3)                    = 0
+[pid 32072] openat(AT_FDCWD, "/opt/ros/noetic/lib/librt.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+[pid 32072] openat(AT_FDCWD, "/lib/x86_64-linux-gnu/librt.so.1", O_RDONLY|O_CLOEXEC) = 3
+[pid 32072] read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0 '\0\0\0\0\0\0"..., 832) = 832
+[pid 32072] fstat(3, {st_mode=S_IFREG|0644, st_size=35960, ...}) = 0
+[pid 32072] mmap(NULL, 39904, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fcdeb68c000
+[pid 32072] mmap(0x7fcdeb68e000, 16384, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x7fcdeb68e000
+[pid 32072] mmap(0x7fcdeb692000, 8192, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x6000) = 0x7fcdeb692000
+[pid 32072] mmap(0x7fcdeb694000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x7000) = 0x7fcdeb694000
+[pid 32072] close(3)                    = 0
+[pid 32072] openat(AT_FDCWD, "/opt/ros/noetic/lib/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+[pid 32072] openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = 3
+[pid 32072] read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0`\341\t\0\0\0\0\0"..., 832) = 832
+[pid 32072] fstat(3, {st_mode=S_IFREG|0644, st_size=1956992, ...}) = 0
+[pid 32072] mmap(NULL, 1972224, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fcdeb4aa000
+[pid 32072] mprotect(0x7fcdeb540000, 1290240, PROT_NONE) = 0
+[pid 32072] mmap(0x7fcdeb540000, 987136, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x96000) = 0x7fcdeb540000
+[pid 32072] mmap(0x7fcdeb631000, 299008, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x187000) = 0x7fcdeb631000
+[pid 32072] mmap(0x7fcdeb67b000, 57344, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1d0000) = 0x7fcdeb67b000
+[pid 32072] mmap(0x7fcdeb689000, 10240, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7fcdeb689000
+[pid 32072] close(3)                    = 0
+[pid 32072] openat(AT_FDCWD, "/opt/ros/noetic/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+[pid 32072] openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+[pid 32072] read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\3405\0\0\0\0\0\0"..., 832) = 832
+[pid 32072] fstat(3, {st_mode=S_IFREG|0644, st_size=104984, ...}) = 0
+[pid 32072] mmap(NULL, 107592, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fcdeb48f000
+[pid 32072] mmap(0x7fcdeb492000, 73728, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x3000) = 0x7fcdeb492000
+[pid 32072] mmap(0x7fcdeb4a4000, 16384, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x15000) = 0x7fcdeb4a4000
+[pid 32072] mmap(0x7fcdeb4a8000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x18000) = 0x7fcdeb4a8000
+[pid 32072] close(3)                    = 0
+[pid 32072] openat(AT_FDCWD, "/opt/ros/noetic/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+[pid 32072] openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+[pid 32072] read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\300A\2\0\0\0\0\0"..., 832) = 832
+[pid 32072] pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+[pid 32072] pread64(3, "\4\0\0\0\20\0\0\0\5\0\0\0GNU\0\2\0\0\300\4\0\0\0\3\0\0\0\0\0\0\0", 32, 848) = 32
+[pid 32072] pread64(3, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\30x\346\264ur\f|Q\226\236i\253-'o"..., 68, 880) = 68
+[pid 32072] fstat(3, {st_mode=S_IFREG|0755, st_size=2029592, ...}) = 0
+[pid 32072] pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+[pid 32072] pread64(3, "\4\0\0\0\20\0\0\0\5\0\0\0GNU\0\2\0\0\300\4\0\0\0\3\0\0\0\0\0\0\0", 32, 848) = 32
+[pid 32072] pread64(3, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\30x\346\264ur\f|Q\226\236i\253-'o"..., 68, 880) = 68
+[pid 32072] mmap(NULL, 2037344, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fcdeb29d000
+[pid 32072] mmap(0x7fcdeb2bf000, 1540096, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x22000) = 0x7fcdeb2bf000
+[pid 32072] mmap(0x7fcdeb437000, 319488, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x19a000) = 0x7fcdeb437000
+[pid 32072] mmap(0x7fcdeb485000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1e7000) = 0x7fcdeb485000
+[pid 32072] mmap(0x7fcdeb48b000, 13920, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7fcdeb48b000
+[pid 32072] close(3)                    = 0
+[pid 32072] openat(AT_FDCWD, "/opt/ros/noetic/lib/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+[pid 32072] openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libm.so.6", O_RDONLY|O_CLOEXEC) = 3
+[pid 32072] read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\300\323\0\0\0\0\0\0"..., 832) = 832
+[pid 32072] fstat(3, {st_mode=S_IFREG|0644, st_size=1369384, ...}) = 0
+[pid 32072] mmap(NULL, 1368336, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fcdeb14e000
+[pid 32072] mmap(0x7fcdeb15b000, 684032, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xd000) = 0x7fcdeb15b000
+[pid 32072] mmap(0x7fcdeb202000, 626688, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xb4000) = 0x7fcdeb202000
+[pid 32072] mmap(0x7fcdeb29b000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x14c000) = 0x7fcdeb29b000
+[pid 32072] close(3)                    = 0
+[pid 32072] mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fcdeb14c000
+[pid 32072] mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fcdeb149000
+[pid 32072] arch_prctl(ARCH_SET_FS, 0x7fcdeb149740) = 0
+[pid 32072] mprotect(0x7fcdeb485000, 16384, PROT_READ) = 0
+[pid 32072] mprotect(0x7fcdeb29b000, 4096, PROT_READ) = 0
+[pid 32072] mprotect(0x7fcdeb4a8000, 4096, PROT_READ) = 0
+[pid 32072] mprotect(0x7fcdeb67b000, 45056, PROT_READ) = 0
+[pid 32072] mprotect(0x7fcdeb6b3000, 4096, PROT_READ) = 0
+[pid 32072] mprotect(0x7fcdeb694000, 4096, PROT_READ) = 0
+[pid 32072] mprotect(0x55e4039d3000, 4096, PROT_READ) = 0
+[pid 32072] mprotect(0x7fcdeb724000, 4096, PROT_READ) = 0
+[pid 32072] munmap(0x7fcdeb6bb000, 242252) = 0
+[pid 32072] set_tid_address(0x7fcdeb149a10) = 32072
+[pid 32072] set_robust_list(0x7fcdeb149a20, 24) = 0
+[pid 32072] rt_sigaction(SIGRTMIN, {sa_handler=0x7fcdeb69cbf0, sa_mask=[], sa_flags=SA_RESTORER|SA_SIGINFO, sa_restorer=0x7fcdeb6aa420}, NULL, 8) = 0
+[pid 32072] rt_sigaction(SIGRT_1, {sa_handler=0x7fcdeb69cc90, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART|SA_SIGINFO, sa_restorer=0x7fcdeb6aa420}, NULL, 8) = 0
+[pid 32072] rt_sigprocmask(SIG_UNBLOCK, [RTMIN RT_1], NULL, 8) = 0
+[pid 32072] prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+[pid 32072] brk(NULL)                   = 0x55e404b49000
+[pid 32072] brk(0x55e404b6a000)         = 0x55e404b6a000
+[pid 32072] futex(0x7fcdeb6896bc, FUTEX_WAKE_PRIVATE, 2147483647) = 0
+[pid 32072] futex(0x7fcdeb6896c8, FUTEX_WAKE_PRIVATE, 2147483647) = 0
+[pid 32072] openat(AT_FDCWD, "\321\210\321\202 input.txt", O_WRONLY|O_CREAT|O_APPEND, 0666) = 3
+[pid 32072] lseek(3, 0, SEEK_END)       = 0
+[pid 32072] statfs("/dev/shm/", {f_type=TMPFS_MAGIC, f_bsize=4096, f_blocks=978216, f_bfree=978213, f_bavail=978213, f_files=978216, f_ffree=978211, f_fsid={val=[3579996579, 1479093750]}, f_namelen=255, f_frsize=4096, f_flags=ST_VALID|ST_NOSUID|ST_NODEV|ST_NOATIME}) = 0
+[pid 32072] futex(0x7fcdeb6b8390, FUTEX_WAKE_PRIVATE, 2147483647) = 0
+[pid 32072] openat(AT_FDCWD, "/dev/shm/shared_memory", O_RDWR|O_CREAT|O_NOFOLLOW|O_CLOEXEC, 0600) = 4
+[pid 32072] ftruncate(4, 1024)          = 0
+[pid 32072] openat(AT_FDCWD, "/dev/shm/response_memory", O_RDWR|O_CREAT|O_NOFOLLOW|O_CLOEXEC, 0600) = 5
+[pid 32072] ftruncate(5, 1024)          = 0
+[pid 32072] mmap(NULL, 1024, PROT_READ|PROT_WRITE, MAP_SHARED, 4, 0) = 0x7fcdeb723000
+[pid 32072] mmap(NULL, 1024, PROT_READ|PROT_WRITE, MAP_SHARED, 5, 0) = 0x7fcdeb6f6000
+[pid 32072] openat(AT_FDCWD, "/dev/shm/sem.semaphore", O_RDWR|O_NOFOLLOW) = 6
+[pid 32072] fstat(6, {st_mode=S_IFREG|0600, st_size=32, ...}) = 0
+[pid 32072] mmap(NULL, 32, PROT_READ|PROT_WRITE, MAP_SHARED, 6, 0) = 0x7fcdeb6f5000
+[pid 32072] close(6)                    = 0
+[pid 32072] openat(AT_FDCWD, "/dev/shm/sem.response_semaphore", O_RDWR|O_NOFOLLOW) = 6
+[pid 32072] fstat(6, {st_mode=S_IFREG|0600, st_size=32, ...}) = 0
+[pid 32072] mmap(NULL, 32, PROT_READ|PROT_WRITE, MAP_SHARED, 6, 0) = 0x7fcdeb6f4000
+[pid 32072] close(6)                    = 0
+[pid 32072] write(3, "AAAAAA\n", 7)     = 7
+[pid 32072] futex(0x7fcdeb6f4000, FUTEX_WAKE, 1 <unfinished ...>
+[pid 32032] <... futex resumed>)        = 0
+[pid 32072] <... futex resumed>)        = 1
+[pid 32032] futex(0x7fd809d57000, FUTEX_WAIT_BITSET|FUTEX_CLOCK_REALTIME, 0, NULL, FUTEX_BITSET_MATCH_ANY <unfinished ...>
+[pid 32072] write(3, "BBBBBB\n", 7)     = 7
+[pid 32072] futex(0x7fcdeb6f4000, FUTEX_WAKE, 1 <unfinished ...>
+[pid 32032] <... futex resumed>)        = 0
+[pid 32072] <... futex resumed>)        = 1
+[pid 32032] futex(0x7fd809d57000, FUTEX_WAIT_BITSET|FUTEX_CLOCK_REALTIME, 0, NULL, FUTEX_BITSET_MATCH_ANY <unfinished ...>
+[pid 32072] futex(0x7fcdeb6f4000, FUTEX_WAKE, 1 <unfinished ...>
+[pid 32032] <... futex resumed>)        = -1 EAGAIN (Resource temporarily unavailable)
+[pid 32072] <... futex resumed>)        = 0
+[pid 32032] write(2, "Error: ", 7 <unfinished ...>
+[pid 32072] futex(0x7fcdeb6f5000, FUTEX_WAIT_BITSET|FUTEX_CLOCK_REALTIME, 0, NULL, FUTEX_BITSET_MATCH_ANYError:  <unfinished ...>
+[pid 32032] <... write resumed>)        = 7
+[pid 32032] write(2, "aaaaaaaa", 8aaaaaaaa)     = 8
+[pid 32032] write(2, "\n", 1
+)           = 1
+[pid 32032] futex(0x7fd809d58000, FUTEX_WAKE, 1) = 1
+[pid 32072] <... futex resumed>)        = 0
+[pid 32032] wait4(-1,  <unfinished ...>
+[pid 32072] munmap(0x7fcdeb6f5000, 32)  = 0
+[pid 32072] munmap(0x7fcdeb6f4000, 32)  = 0
+[pid 32072] munmap(0x7fcdeb723000, 1024) = 0
+[pid 32072] munmap(0x7fcdeb6f6000, 1024) = 0
+[pid 32072] unlink("/dev/shm/sem.semaphore") = 0
+[pid 32072] unlink("/dev/shm/sem.response_semaphore") = 0
+[pid 32072] unlink("/dev/shm/shared_memory") = 0
+[pid 32072] unlink("/dev/shm/response_memory") = 0
+[pid 32072] exit_group(0)               = ?
+[pid 32072] +++ exited with 0 +++
+<... wait4 resumed>NULL, 0, NULL)       = 32072
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=32072, si_uid=1000, si_status=0, si_utime=0, si_stime=1} ---
+munmap(0x7fd809d58000, 32)              = 0
+munmap(0x7fd809d57000, 32)              = 0
+munmap(0x7fd809d86000, 1024)            = 0
+munmap(0x7fd809d59000, 1024)            = 0
+unlink("/dev/shm/sem.semaphore")        = -1 ENOENT (No such file or directory)
+unlink("/dev/shm/sem.response_semaphore") = -1 ENOENT (No such file or directory)
+unlink("/dev/shm/shared_memory")        = -1 ENOENT (No such file or directory)
+unlink("/dev/shm/response_memory")      = -1 ENOENT (No such file or directory)
+exit_group(0)                           = ?
++++ exited with 0 +++
+\end{lstlisting}
+
+\section*{Описание}
+
+\begin{enumerate}
+    \item execve("./lab3/lab3", ["./lab3/lab3"], 0x7ffe75b4c4b8 /* 42 vars */) = 0: Это вызов execve, который запускает программу lab3. Значение 0 означает успешное выполнение.
+    \item brk(NULL) = 0x561905215000: Этот вызов brk используется для расширения размера кучи программы. В данном случае, он устанавливает верхний предел кучи на адрес 0x561905215000.
+    \item openat(AT\texttt{\_}FDCWD, "/etc/ld.so.cache", O\texttt{\_}RDONLY|O\texttt{\_}CLOEXEC) = 3: Этот вызов открывает файл /etc/ld.so.cache для чтения. Файл ld.so.cache содержит кэш динамически загружаемых библиотек, используемых для быстрого поиска библиотек при выполнении программ.
+    \item fstat(3, {st\texttt{\_}mode=S\texttt{\_}IFREG|0644, st\texttt{\_}size=242252, ...}) = 0: Этот вызов получает информацию о файле, открытом дескриптором 3 (который был получен при открытии ld.so.cache).
+    \item mmap(NULL, 2037344, PROT\texttt{\_}READ, MAP\texttt{\_}PRIVATE|MAP\texttt{\_}DENYWRITE, 3, 0) = 0x7fd809900000: Выделение памяти с использованием системного вызова mmap. Этот вызов создает отображение виртуальной памяти для чтения (PROT\texttt{\_}READ) размером 2037344 байт, начиная с адреса 0x7fd809900000. Отображение является частным (MAP\texttt{\_}PRIVATE) и не может быть записано (MAP\texttt{\_}DENYWRITE). Файловый дескриптор 3 указывает на файл, откуда происходит отображение
+    \item close(3) = 0: Этот вызов закрывает файловый дескриптор 3 (который был использован для ld.so.cache).
+    \item read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0 '\0\0\0\0\0\0"..., 832) = 832: Чтение 832 битов из файла /lib/x86\texttt{\_}64-linux-gnu/librt.so.1
+    \item arch\texttt{\_}prctl(ARCH\texttt{\_}SET\texttt{\_}FS, 0x7fd8097ac740): Устанавливает значение регистра сегмента данных fs для текущего процесса.
+    \itemmprotect(0x7fd809ae8000, 16384, PROT\texttt{\_}READ) = 0: Этот вызов изменяет права доступа к памяти. В данном случае, он делает доступной для чтения область памяти, начинающуюся с адреса 0x7fd809ae8000 и имеющую размер 16384 байта.
+    \item munmap(0x7fd809d1e000, 242252): Удаляет указанный участок памяти из адресного пространства процесса.
+    \item set\texttt{\_}tid\texttt{\_}address(0x7fd8097aca10) = 32032: Этот вызов устанавливает адрес переменной в адресное пространство потока. В данном случае, он устанавливает адрес переменной равным 0x7fd8097aca10 и возвращает идентификатор потока.
+    \item futex(0x7fd809cec6bc, FUTEX\texttt{\_}WAKE\texttt{\_}PRIVATE, 2147483647) = 0: Этот вызов реализует операции с futex (Fast Userspace Mutex). В данном случае, он пробуждает ожидающий поток.
+    \item prlimit64(0, RLIMIT\texttt{\_}STACK, NULL, {rlim\texttt{\_}cur=8192*1024, rlim\texttt{\_}max=RLIM64\texttt{\_}INFINITY}) = 0: Этот вызов изменяет ограничения ресурсов процесса. В данном случае, он устанавливает текущий размер стека в 8192*1024 байт и максимальный размер стека в бесконечность.
+    \item read(0, input.txt "\321\210\321\202 input.txt\n", 1024) = 15: Процесс читает данные из стандартного ввода (файловый дескриптор 0) в буфер размером 1024 байта. Прочитанная строка имеет длину 15 байт.
+    \item statfs("/dev/shm/", {f\texttt{\_}type=TMPFS\texttt{\_}MAGIC, f\texttt{\_}bsize=4096, f\texttt{\_}blocks=978216, f\texttt{\_}bfree=978216, f\texttt{\_}bavail=978216, f\texttt{\_}files=978216, f\texttt{\_}ffree=978215, f\texttt{\_}fsid={val=[3579996579, 1479093750]}, f\texttt{\_}namelen=255, f\texttt{\_}frsize=4096, f\texttt{\_}flags=ST\texttt{\_}VALID|ST\texttt{\_}NOSUID|ST\texttt{\_}NODEV|ST\texttt{\_}NOATIME}) = 0: Получение информации о файловой системе для /dev/shm/. Результаты сохраняются в структуре statfs.
+    \item unlink("/dev/shm/sem.semaphore") = -1 ENOENT (No such file or directory): Удаление файла /dev/shm/sem.semaphore
+    \item ftruncate(3, 1024) = 0: Установка размера файла, связанного с файловым дескриптором 3, в 1024 байта.
+    \item getpid() = 32032: Получение идентификатора текущего процесса.
+    \item write(5, "\0\0\0\0\0\0\0\0\200\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 32) = 32: Запись 32 байт нулей в файл, связанный с файловым дескриптором 5.
+    \item link("/dev/shm/xvbwMi", "/dev/shm/sem.response\texttt{\_}semaphore") = 0: Создание жесткой ссылки /dev/shm/sem.response\texttt{\_}semaphore на файл /dev/shm/xvbwMi.
+    \item read(0, AAAAAA "\n", 1024) = 7: Процесс читает данные из стандартного ввода в буфер размером 1024 байта. Прочитанная строка имеет длину 7 байт.
+    \item clone(child\texttt{\_}stack=NULL, flags=CLONE\texttt{\_}CHILD\texttt{\_}CLEARTID|CLONE\texttt{\_}CHILD\texttt{\_}SETTID|SIGCHLDstrace: Process 32072 attached, child\texttt{\_}tidptr=0x7fd8097aca10) = 32072: Создание нового процесса с помощью системного вызова clone. Новый процесс будет выполняться в новом потоке с пустым стеком и будет иметь те же обработчики сигналов, что и родительский процесс.
+    \item \texttt{[}pid 32072 \texttt{]}: выполняется процесс с id 32072.
+    \item Т.к. в strace указан флаг –f, то также выводились системные вызовы, связанные с дочерним процессом программы.
+\end{enumerate}
+
+Итак, Для открытия файлов используется openat,так как общие файлы расположены в /dev/shm, то системные вызовы ссылаются на этот путь, их размеры устанавливаются  с помощью ftruncate, с помощью mmap и munmap происходит их отображение в память, создаются процессы через clone, работа с мьютексами происходит через futex и удаление файлов происходит с помощью unlink.
+
+\section*{Вывод}
+
+В ходе данной лабораторной работы я познакомилась с использованием утилиты strace для отслеживания системных вызовов, выполняемых программой в операционной системе Linux. Результаты strace предоставляют информацию о взаимодействии программы с операционной системой, такую как открытие и закрытие файлов, работу с памятью, создание процессов, обращения к мьютексам и удаление файлов. 
+
+\end{document}

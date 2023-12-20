@@ -1,0 +1,277 @@
+\documentclass[a4paper, 14pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,     
+    urlcolor=black,
+}
+\usepackage[english,russian]{babel}
+\usepackage{setspace}
+\singlespacing
+\usepackage{soulutf8}
+\usepackage{indentfirst}
+\usepackage[top=30mm]{geometry}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0mm}
+\usepackage{tocloft}
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+
+
+\lstdefinestyle{mystyle}{
+    language=C++,
+    commentstyle=\color{YellowGreen},
+    keywordstyle=\color{RedViolet},
+    numberstyle=\tiny\color{Grey},
+    stringstyle=\color{BurntOrange},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4,
+    literate=
+        {а}{{\selectfont\char224}}1
+        {б}{{\selectfont\char225}}1
+        {в}{{\selectfont\char226}}1
+        {г}{{\selectfont\char227}}1
+        {д}{{\selectfont\char228}}1
+        {е}{{\selectfont\char229}}1
+        {ё}{{\"e}}1
+        {ж}{{\selectfont\char230}}1
+        {з}{{\selectfont\char231}}1
+        {и}{{\selectfont\char232}}1
+        {й}{{\selectfont\char233}}1
+        {к}{{\selectfont\char234}}1
+        {л}{{\selectfont\char235}}1
+        {м}{{\selectfont\char236}}1
+        {н}{{\selectfont\char237}}1
+        {о}{{\selectfont\char238}}1
+        {п}{{\selectfont\char239}}1
+        {р}{{\selectfont\char240}}1
+        {с}{{\selectfont\char241}}1
+        {т}{{\selectfont\char242}}1
+        {у}{{\selectfont\char243}}1
+        {ф}{{\selectfont\char244}}1
+        {х}{{\selectfont\char245}}1
+        {ц}{{\selectfont\char246}}1
+        {ч}{{\selectfont\char247}}1
+        {ш}{{\selectfont\char248}}1
+        {щ}{{\selectfont\char249}}1
+        {ъ}{{\selectfont\char250}}1
+        {ы}{{\selectfont\char251}}1
+        {ь}{{\selectfont\char252}}1
+        {э}{{\selectfont\char253}}1
+        {ю}{{\selectfont\char254}}1
+        {я}{{\selectfont\char255}}1
+        {А}{{\selectfont\char192}}1
+        {Б}{{\selectfont\char193}}1
+        {В}{{\selectfont\char194}}1
+        {Г}{{\selectfont\char195}}1
+        {Д}{{\selectfont\char196}}1
+        {Е}{{\selectfont\char197}}1
+        {Ё}{{\"E}}1
+        {Ж}{{\selectfont\char198}}1
+        {З}{{\selectfont\char199}}1
+        {И}{{\selectfont\char200}}1
+        {Й}{{\selectfont\char201}}1
+        {К}{{\selectfont\char202}}1
+        {Л}{{\selectfont\char203}}1
+        {М}{{\selectfont\char204}}1
+        {Н}{{\selectfont\char205}}1
+        {О}{{\selectfont\char206}}1
+        {П}{{\selectfont\char207}}1
+        {Р}{{\selectfont\char208}}1
+        {С}{{\selectfont\char209}}1
+        {Т}{{\selectfont\char210}}1
+        {У}{{\selectfont\char211}}1
+        {Ф}{{\selectfont\char212}}1
+        {Х}{{\selectfont\char213}}1
+        {Ц}{{\selectfont\char214}}1
+        {Ч}{{\selectfont\char215}}1
+        {Ш}{{\selectfont\char216}}1
+        {Щ}{{\selectfont\char217}}1
+        {Ъ}{{\selectfont\char218}}1
+        {Ы}{{\selectfont\char219}}1
+        {Ь}{{\selectfont\char220}}1
+        {Э}{{\selectfont\char221}}1
+        {Ю}{{\selectfont\char222}}1
+        {Я}{{\selectfont\char223}}1
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+\thispagestyle{empty}	
+\begin{center}
+	Московский авиационный институт
+	
+	(Национальный исследовательский университет)
+	
+	Факультет информационных технологий и прикладной математики
+	
+	Кафедра вычислительной математики и программирования
+	
+\end{center}
+\vspace{40ex}
+\begin{center}
+	\textbf{\large{Лабораторная работа №1 по курсу\linebreak \textquotedblleft Операционные системы\textquotedblright}}
+\end{center}
+\vspace{35ex}
+\begin{flushright}
+	\textit{Студент: } Немкова Анастасия Романовна
+	
+	\vspace{2ex}
+	\textit{Группа: } М8О-208Б-22
+	
+	\vspace{2ex}
+	\textit{Преподаватель: } Миронов Евгений Сергеевич
+	
+	\vspace{2ex}
+	\textit{Вариант: 15} 
+	
+	\vspace{2ex}
+	\textit{Оценка: } \underline{\quad\quad\quad\quad\quad\quad}
+	
+	 \vspace{2ex}
+	\textit{Дата: } \underline{\quad\quad\quad\quad\quad\quad}
+	
+	\vspace{2ex}
+	\textit{Подпись: } \underline{\quad\quad\quad\quad\quad\quad}
+	
+\end{flushright}
+
+\vspace{5ex}
+
+\begin{vfill}
+	\begin{center}
+		Москва, 2023
+	\end{center}	
+\end{vfill}
+\newpage
+
+\begin{center}
+\section*{Содержание}   
+\end{center}
+\vspace{5ex}
+\begin{enumerate}
+  \item Репозиторий
+  \item Постановка задачи
+  \item Общие сведения о программе
+  \item Общий метод и алгоритм решения
+  \item Исходный код
+  \item Демонстрация работы программы
+  \item Вывод
+\end{enumerate}
+\newpage
+
+\begin{figure}
+\section*{Репозиторий}   
+\vspace{2ex}
+\url{https://github.com/anastasia-nemkova/OS_labs}
+
+\section*{Постановка задачи}   
+\textbf{Цель работы:}
+\vspace{2ex}
+
+Изучить управление процессами в ОС и обеспечение обмена данных между процессами посредством каналов
+
+\vspace{4ex}
+\textbf{Задание:}
+\vspace{2ex}
+
+    \centering
+    \includegraphics[width=0.7\linewidth]{Lab1.png}
+    \label{fig:enter-label}
+\end{figure}
+
+Родительский процесс создает дочерний процесс. Первой строкой пользователь в консоль 
+родительского процесса вводит имя файла, которое будет использовано для открытия File с таким именем на запись. Перенаправление стандартных потоков ввода-вывода показано на картинке выше. Родительский и дочерний процесс должны быть представлены разными программами. Родительский процесс принимает от пользователя строки произвольной длины и пересылает их в pipe1. Процесс child проверяет строки на валидность правилу. Если строка соответствует правилу, то она выводится в стандартный поток вывода дочернего процесса, иначе в pipe2 выводится информация об ошибке. Родительский процесс полученные от child ошибки выводит в стандартный поток вывода\newline
+
+\textit{Вариант 15)} Правило проверки: строка должна начинаться с заглавной буквы
+
+\newpage
+\section*{Общие сведения о программе}
+
+Программа компилируется из файлов parent.cpp с основным процессом, child.cpp с дочерним процессом и utils.cpp c вспомагательными функциями. Также имеются заголовочные файлы parent.hpp и utils.hpp и файл с тестами lab1\texttt{\_}test.cpp. В программе работы были использованы следующие системные вызовы:
+
+\begin{itemize}
+    \item fork() - создание нового процесса.
+    \item execlp() - замена текущего образа процесса новым.
+    \item pipe() - создание однонапрвленного канала для передачи строк родительским процессом дочернему
+    \item read() - чтение из pipe
+    \item write() - запись в pipe
+    \item close() - закрытие файлового дискриптора
+    \item dup2() - перенаправление одиного файлового дескриптора на другой
+\end{itemize}
+
+\section*{Общий метод и алгоритм решения}
+
+В родительском процессе до создания дочернего считываем имя файла, в который в последствии будем записывать строки, начиначинающиеся с большой буквы, и переопределяем поток ввода и вывода. Создаем два канала: для передачи строк из родительского процесса в дочерний и для передачи ошибок из дочернего процесса в родительский и используем execlp для запуска файла дочернего процесса. В родительском процессе считываем строки и записываем их в первый канал, в дочернем процессе обрабатываем эти строки, если они удовлетворяют правилу - записываем их в файл, иначе записываем ошибку и саму строку во второй канал. В родительском процессе с помощью функции ReadFromPipe2 читаем переданные дочерним процессом ошибки и выводим их на экран.
+\newpage
+
+\section*{Исходный код}
+
+\textbf{parent.hpp}
+\lstinputlisting{parent.hpp}
+
+\textbf{parent.cpp}
+\lstinputlisting{parent.cpp}
+
+\textbf{utils.hpp}
+\lstinputlisting{utils.hpp}
+
+\textbf{utils.cpp}
+\lstinputlisting{utils.cpp}
+
+\textbf{child.cpp}
+\lstinputlisting{child.cpp}
+
+\textbf{main.cpp}
+\lstinputlisting{main.cpp}
+
+\textbf{lab1\texttt{\_}test.cpp}
+\lstinputlisting{lab1_test.cpp}
+
+\section*{Демонстрация работы программы}
+\begin{verbatim}
+arnemkova@LAPTOP-TA2RV74U:~/OS_labs/build$ ./tests/lab1_test
+[==========] Running 4 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 4 tests from firstLabTests
+[ RUN      ] firstLabTests.simpleTest
+[       OK ] firstLabTests.simpleTest (2 ms)
+[ RUN      ] firstLabTests.emptystrTest
+[       OK ] firstLabTests.emptystrTest (1 ms)
+[ RUN      ] firstLabTests.sonneTest
+[       OK ] firstLabTests.sonneTest (1 ms)
+[ RUN      ] firstLabTests.deathTest
+[       OK ] firstLabTests.deathTest (1 ms)
+[----------] 4 tests from firstLabTests (6 ms total)
+
+[----------] Global test environment tear-down
+[==========] 4 tests from 1 test suite ran. (6 ms total)
+[  PASSED  ] 4 tests.
+\end{verbatim}
+
+\section*{Вывод}
+
+В ходе выполнения данной лабораторной работы я изучила работу процессов, реализацию обмена информацией между дочерним и родительским процессами с использованием каналов в ОС Linux.
+
+В процессе работы я познакомилась с системными вызовами, которые представляют собой интерфейс для взаимодействия прикладных программ с операционной системой.
+
+Системные вызовы отличаются от обычных функций тем, что они выполняются на уровне ядра операционной системы и предоставляют доступ к ресурсам, защищенным от прямого доступа программ. Эти вызовы позволяют программам выполнять такие операции, как создание процессов (fork), создание каналов для межпроцессного взаимодействия (pipe), замещение текущего процесса новой программой (execlp) и дублирование файловых дескрипторов (dup2), что широко используется для реализации различных аспектов многозадачности и взаимодействия процессов в операционных системах.
+
+Также я изучила устройство памяти процесса, которое делится на несколько секций, каждая из которых отвечает за определенные части работы программы.
+
+
+\end{document}

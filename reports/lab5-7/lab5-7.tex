@@ -1,0 +1,414 @@
+\documentclass[a4paper, 14pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,     
+    urlcolor=black,
+}
+\usepackage[english,russian]{babel}
+\usepackage{setspace}
+\singlespacing
+\usepackage{soulutf8}
+\usepackage{indentfirst}
+\usepackage[top=30mm]{geometry}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0mm}
+\usepackage{tocloft}
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\setlength{\tabcolsep}{8.5pt}
+\renewcommand{\arraystretch}{2}
+\usepackage{changepage}
+
+\lstdefinestyle{mystyle}{
+    language=C++,
+    commentstyle=\color{YellowGreen},
+    keywordstyle=\color{RedViolet},
+    numberstyle=\tiny\color{Grey},
+    stringstyle=\color{BurntOrange},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4,
+    literate=
+        {а}{{\selectfont\char224}}1
+        {б}{{\selectfont\char225}}1
+        {в}{{\selectfont\char226}}1
+        {г}{{\selectfont\char227}}1
+        {д}{{\selectfont\char228}}1
+        {е}{{\selectfont\char229}}1
+        {ё}{{\"e}}1
+        {ж}{{\selectfont\char230}}1
+        {з}{{\selectfont\char231}}1
+        {и}{{\selectfont\char232}}1
+        {й}{{\selectfont\char233}}1
+        {к}{{\selectfont\char234}}1
+        {л}{{\selectfont\char235}}1
+        {м}{{\selectfont\char236}}1
+        {н}{{\selectfont\char237}}1
+        {о}{{\selectfont\char238}}1
+        {п}{{\selectfont\char239}}1
+        {р}{{\selectfont\char240}}1
+        {с}{{\selectfont\char241}}1
+        {т}{{\selectfont\char242}}1
+        {у}{{\selectfont\char243}}1
+        {ф}{{\selectfont\char244}}1
+        {х}{{\selectfont\char245}}1
+        {ц}{{\selectfont\char246}}1
+        {ч}{{\selectfont\char247}}1
+        {ш}{{\selectfont\char248}}1
+        {щ}{{\selectfont\char249}}1
+        {ъ}{{\selectfont\char250}}1
+        {ы}{{\selectfont\char251}}1
+        {ь}{{\selectfont\char252}}1
+        {э}{{\selectfont\char253}}1
+        {ю}{{\selectfont\char254}}1
+        {я}{{\selectfont\char255}}1
+        {А}{{\selectfont\char192}}1
+        {Б}{{\selectfont\char193}}1
+        {В}{{\selectfont\char194}}1
+        {Г}{{\selectfont\char195}}1
+        {Д}{{\selectfont\char196}}1
+        {Е}{{\selectfont\char197}}1
+        {Ё}{{\"E}}1
+        {Ж}{{\selectfont\char198}}1
+        {З}{{\selectfont\char199}}1
+        {И}{{\selectfont\char200}}1
+        {Й}{{\selectfont\char201}}1
+        {К}{{\selectfont\char202}}1
+        {Л}{{\selectfont\char203}}1
+        {М}{{\selectfont\char204}}1
+        {Н}{{\selectfont\char205}}1
+        {О}{{\selectfont\char206}}1
+        {П}{{\selectfont\char207}}1
+        {Р}{{\selectfont\char208}}1
+        {С}{{\selectfont\char209}}1
+        {Т}{{\selectfont\char210}}1
+        {У}{{\selectfont\char211}}1
+        {Ф}{{\selectfont\char212}}1
+        {Х}{{\selectfont\char213}}1
+        {Ц}{{\selectfont\char214}}1
+        {Ч}{{\selectfont\char215}}1
+        {Ш}{{\selectfont\char216}}1
+        {Щ}{{\selectfont\char217}}1
+        {Ъ}{{\selectfont\char218}}1
+        {Ы}{{\selectfont\char219}}1
+        {Ь}{{\selectfont\char220}}1
+        {Э}{{\selectfont\char221}}1
+        {Ю}{{\selectfont\char222}}1
+        {Я}{{\selectfont\char223}}1
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+\thispagestyle{empty}	
+\begin{center}
+	Московский авиационный институт
+	
+	(Национальный исследовательский университет)
+	
+	Факультет информационных технологий и прикладной математики
+	
+	Кафедра вычислительной математики и программирования
+	
+\end{center}
+\vspace{40ex}
+\begin{center}
+	\textbf{\large{Лабораторная работа №5-7 по курсу\linebreak \textquotedblleft Операционные системы\textquotedblright}}
+\end{center}
+\vspace{35ex}
+\begin{flushright}
+	\textit{Студент: } Немкова Анастасия Романовна
+	
+	\vspace{2ex}
+	\textit{Группа: } М8О-208Б-22
+	
+	\vspace{2ex}
+	\textit{Преподаватель: } Миронов Евгений Сергеевич
+	
+	\vspace{2ex}
+	\textit{Вариант: 9} 
+	
+	\vspace{2ex}
+	\textit{Оценка: } \underline{\quad\quad\quad\quad\quad\quad}
+	
+	 \vspace{2ex}
+	\textit{Дата: } \underline{\quad\quad\quad\quad\quad\quad}
+	
+	\vspace{2ex}
+	\textit{Подпись: } \underline{\quad\quad\quad\quad\quad\quad}
+	
+\end{flushright}
+
+\vspace{5ex}
+
+\begin{vfill}
+	\begin{center}
+		Москва, 2023
+	\end{center}	
+\end{vfill}
+\newpage
+
+\begin{center}
+\section*{Содержание}   
+\end{center}
+\vspace{5ex}
+\begin{enumerate}
+  \item Репозиторий
+  \item Постановка задачи
+  \item Общие сведения о программе
+  \item Общий метод и алгоритм решения
+  \item Исходный код
+  \item Демонстрация работы программы
+  \item Вывод
+\end{enumerate}
+\newpage
+
+
+\section*{Репозиторий}   
+\vspace{2ex}
+\url{https://github.com/anastasia-nemkova/OS_labs}
+
+\section*{Постановка задачи}   
+\textbf{Цель работы:}
+\vspace{2ex}
+
+Приобретение практических навыков в:
+\begin{itemize}
+    \item Управлении серверами сообщений (№5)
+    \item Применение отложенных вычислений (№6)
+    \item Интеграция программных систем друг с другом (№7)
+\end{itemize}
+
+\vspace{4ex}
+\textbf{Задание:}
+\vspace{2ex}
+
+Реализовать распределенную систему по асинхронной обработке запросов. В данной  распределенной системе должно существовать 2 вида узлов: «управляющий» и «вычислительный». Необходимо объединить данные узлы в соответствии с той топологией, которая определена вариантом. Связь между узлами необходимо осуществить при помощи технологии очередей сообщений. Также в данной системе необходимо предусмотреть проверку доступности узлов в соответствии с вариантом. При убийстве («kill -9») любого вычислительного узла система должна пытаться максимально сохранять свою работоспособность, а именно все дочерние узлы убитого узла могут стать недоступными, но родительские узлы должны сохранить свою работоспособность.
+
+Управляющий узел отвечает за ввод команд от пользователя и отправку этих команд на вычислительные узлы. Список основных поддерживаемых команд:\newline
+
+\textbf{Создание нового вычислительного узла}
+
+Формат команды: create id [parent]
+
+id – целочисленный идентификатор нового вычислительного узла
+
+parent – целочисленный идентификатор родительского узла
+
+Формат вывода:
+
+«Ok: pid», где pid – идентификатор процесса для созданного вычислительного узла
+
+«Error: Already exists» - вычислительный узел с таким идентификатором уже существует
+
+«Error: Parent not found» - нет такого родительского узла с таким идентификатором
+
+«Error: Parent is unavailable» - родительский узел существует, но по каким-то причинам с ним не удается связаться
+
+«Error: [Custom error]» - любая другая обрабатываемая ошибка
+
+Пример:
+
+> create 10 5
+
+Ok: 3128\newline
+
+\textbf{Исполнение команды на вычислительном узле}
+
+Формат команды: exec id [params]
+
+id – целочисленный идентификатор вычислительного узла, на который отправляется команда
+
+Формат вывода:
+
+«Ok:id: [result]», где result – результат выполненной команды
+
+«Error:id: Not found» - вычислительный узел с таким идентификатором не найден
+
+«Error:id: Node is unavailable» - по каким-то причинам не удается связаться с вычислительным узлом
+
+«Error:id: [Custom error]» - любая другая обрабатываемая ошибка
+\newpage
+\begin{figure}
+
+\textit{Вариант 9:}
+
+\textbf{Топология}
+
+    \centering
+    \includegraphics[width=0.5\linewidth]{Топология.png}
+    \label{fig:enter-label}
+\end{figure}
+
+Все вычислительные узлы находятся в списке. Есть только один управляющий узел. Чтобы добавить новый вычислительный узел к управляющему, то необходимо выполнить команду: create id -1.\newline
+
+\textbf{Тип команд на вычислительных узлах}
+
+Набор команд 2 (локальный целочисленный словарь)
+
+Формат команды сохранения значения: exec id name value
+
+id – целочисленный идентификатор вычислительного узла, на который отправляется команда
+
+name – ключ, по которому будет сохранено значение (строка формата [A-Za-z0-9]+)
+
+value – целочисленное значение
+
+Формат команды загрузки значения: exec id name
+
+Пример:
+
+> exec 10 MyVar
+
+Ok:10: 'MyVar' not found
+
+> exec 10 MyVar 5
+
+Ok:10
+
+> exec 12 MyVar
+
+Ok:12: 'MyVar' not found
+
+> exec 10 MyVar
+
+Ok:10: 5
+
+> exec 10 MyVar 7
+
+Ok:10
+
+> exec 10 MyVar
+
+Ok:10: 7
+\newpage
+
+\textbf{Тип проверки доступности узлов}
+
+Команда проверки 2
+
+Формат команды: ping id
+
+Команда проверяет доступность конкретного узла. Если узла нет, то необходимо выводить ошибку: «Error: Not found» 
+
+Пример:
+
+> ping 10
+
+Ok: 1 // узел 10 доступен
+
+> ping 17
+
+Ok: 0 // узел 17 недоступен
+
+\section*{Общие сведения о программе}
+Программа компилируется из файлов socket.cpp с функциями для работы с сокетами, topology.cpp с топологией списка, control\texttt{\_}node.cpp с управляющим узлом, calcutation\texttt{\_}node.cpp с вычислительным узлом. Также имеются заголовочные файлы socket.hpp и topology.hpp и тестовый файл lab5-7\texttt{\_}test.cpp. В программе работы были использованы следующие системные вызовы:
+
+\begin{itemize}
+    \item fork() - создание нового процесса
+    \item execl() - замена текустщего процесса на новый
+    \item bind() - привязка сокета к локальному адресу и порту
+    \item coonect() - установка соединения сокета с удаленным адресом и портом
+    \item unbind() - отключение сокета от локального адреса и порта
+    \item disconnect() - разрыв соединения с удаленным сокетом
+    \item send() - отправка сообщений через сокет
+    \item revc() - приём сообщений через сокет
+    \item set() - установка опций сокета
+\end{itemize}
+
+\section*{Общий метод и алгоритм решения}
+
+Управляющий узел отвечает за создание, управление и завершение работы вычислительных узлов. При создании нового узла происходит создание нового процесса, к которому подключается новый сокет для обмена сообщениями с родительским узлом. Для коммуникации между узлами используются ZeroMQ сокеты, которые позволяют отправлять и принимать сообщения через TCP протокол.
+
+Каждый вычислительный узел имеет свой идентификатор, который используется для обращения к нему из управляющего узла. Узлы могут создавать другие узлы, передавать им команды на выполнение определенных действий, такие как добавление новых данных в хранилище или проверка существующих данных. Также они отвечают на запросы проверки их доступности.
+
+При завершении работы узел отключается от родительского узла и завершает свою работу, освобождая ресурсы.
+
+\section*{Исходный код}
+
+\textbf{socket.hpp}
+\lstinputlisting{socket.hpp}
+
+\textbf{socket.cpp}
+\lstinputlisting{socket.cpp}
+
+\textbf{topology.hpp}
+\lstinputlisting{topology.hpp}
+
+\textbf{topology.cpp}
+\lstinputlisting{topology.cpp}
+
+\textbf{calculation\texttt{\_}node.cpp}
+\lstinputlisting{calculation_node.cpp}
+
+\textbf{control\texttt{\_}node.cpp}
+\lstinputlisting{control_node.cpp}
+
+\textbf{lab5-7\texttt{\_}test.cpp}
+\lstinputlisting{lab5-7_test.cpp}
+
+\section*{Демонстрация работы программы}
+
+\textbf{Сама программа}
+\begin{verbatim}
+arnemkova@LAPTOP-TA2RV74U:~/OS_labs/build$ ./lab5-7/client
+create 1 -1
+OK: 18007
+create 2 1
+OK: 18018
+create 3 2
+OK: 18030
+exec 2 may
+OK: 2: 'may' not found
+exec 2 may 1234
+OK: 2
+exec 2 may
+OK: 2: 1234
+ping 1
+OK: 1
+ping 2
+OK: 1
+ping 3
+OK: 1
+kill 1
+OK
+exit
+\end{verbatim}
+
+\textbf{Тесты}
+\begin{verbatim}
+arnemkova@LAPTOP-TA2RV74U:~/OS_labs/build$ ./tests/lab5-7_test
+[==========] Running 2 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 2 tests from FifthSeventhLabTest
+[ RUN      ] FifthSeventhLabTest.SocketTest
+[       OK ] FifthSeventhLabTest.SocketTest (1 ms)
+[ RUN      ] FifthSeventhLabTest.TopologyTest
+[       OK ] FifthSeventhLabTest.TopologyTest (0 ms)
+[----------] 2 tests from FifthSeventhLabTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 2 tests from 1 test suite ran. (1 ms total)
+[  PASSED  ] 2 tests.
+\end{verbatim}
+
+
+\section*{Вывод}
+
+В ходе данной лабораторной работы я познакомилась с библиотекой ZeroMQ, которая позволяет создавать распределенные системы с использованием различных моделей взаимодействия между узлами. Я изучила работу с сокетами ZMQ\texttt{\_}REP и ZMQ\texttt{\_}REQ, которые позволяют установить соединение между управляющим и вычислительным узлами и организовать взаимодействие между ними через запросы и ответы. Также я узнала о принципах мультиплексирования ввода/вывода для эффективной работы с несколькими сокетами одновременно, а также применении асинхронности для параллельной обработки запросов без блокировки основного потока выполнения.
+
+\end{document}

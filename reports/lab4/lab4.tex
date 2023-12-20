@@ -1,0 +1,342 @@
+\documentclass[a4paper, 14pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,     
+    urlcolor=black,
+}
+\usepackage[english,russian]{babel}
+\usepackage{setspace}
+\singlespacing
+\usepackage{soulutf8}
+\usepackage{indentfirst}
+\usepackage[top=30mm]{geometry}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0mm}
+\usepackage{tocloft}
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\setlength{\tabcolsep}{8.5pt}
+\renewcommand{\arraystretch}{2}
+\usepackage{changepage}
+
+\lstdefinestyle{mystyle}{
+    language=C++,
+    commentstyle=\color{YellowGreen},
+    keywordstyle=\color{RedViolet},
+    numberstyle=\tiny\color{Grey},
+    stringstyle=\color{BurntOrange},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4,
+    literate=
+        {а}{{\selectfont\char224}}1
+        {б}{{\selectfont\char225}}1
+        {в}{{\selectfont\char226}}1
+        {г}{{\selectfont\char227}}1
+        {д}{{\selectfont\char228}}1
+        {е}{{\selectfont\char229}}1
+        {ё}{{\"e}}1
+        {ж}{{\selectfont\char230}}1
+        {з}{{\selectfont\char231}}1
+        {и}{{\selectfont\char232}}1
+        {й}{{\selectfont\char233}}1
+        {к}{{\selectfont\char234}}1
+        {л}{{\selectfont\char235}}1
+        {м}{{\selectfont\char236}}1
+        {н}{{\selectfont\char237}}1
+        {о}{{\selectfont\char238}}1
+        {п}{{\selectfont\char239}}1
+        {р}{{\selectfont\char240}}1
+        {с}{{\selectfont\char241}}1
+        {т}{{\selectfont\char242}}1
+        {у}{{\selectfont\char243}}1
+        {ф}{{\selectfont\char244}}1
+        {х}{{\selectfont\char245}}1
+        {ц}{{\selectfont\char246}}1
+        {ч}{{\selectfont\char247}}1
+        {ш}{{\selectfont\char248}}1
+        {щ}{{\selectfont\char249}}1
+        {ъ}{{\selectfont\char250}}1
+        {ы}{{\selectfont\char251}}1
+        {ь}{{\selectfont\char252}}1
+        {э}{{\selectfont\char253}}1
+        {ю}{{\selectfont\char254}}1
+        {я}{{\selectfont\char255}}1
+        {А}{{\selectfont\char192}}1
+        {Б}{{\selectfont\char193}}1
+        {В}{{\selectfont\char194}}1
+        {Г}{{\selectfont\char195}}1
+        {Д}{{\selectfont\char196}}1
+        {Е}{{\selectfont\char197}}1
+        {Ё}{{\"E}}1
+        {Ж}{{\selectfont\char198}}1
+        {З}{{\selectfont\char199}}1
+        {И}{{\selectfont\char200}}1
+        {Й}{{\selectfont\char201}}1
+        {К}{{\selectfont\char202}}1
+        {Л}{{\selectfont\char203}}1
+        {М}{{\selectfont\char204}}1
+        {Н}{{\selectfont\char205}}1
+        {О}{{\selectfont\char206}}1
+        {П}{{\selectfont\char207}}1
+        {Р}{{\selectfont\char208}}1
+        {С}{{\selectfont\char209}}1
+        {Т}{{\selectfont\char210}}1
+        {У}{{\selectfont\char211}}1
+        {Ф}{{\selectfont\char212}}1
+        {Х}{{\selectfont\char213}}1
+        {Ц}{{\selectfont\char214}}1
+        {Ч}{{\selectfont\char215}}1
+        {Ш}{{\selectfont\char216}}1
+        {Щ}{{\selectfont\char217}}1
+        {Ъ}{{\selectfont\char218}}1
+        {Ы}{{\selectfont\char219}}1
+        {Ь}{{\selectfont\char220}}1
+        {Э}{{\selectfont\char221}}1
+        {Ю}{{\selectfont\char222}}1
+        {Я}{{\selectfont\char223}}1
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+\thispagestyle{empty}	
+\begin{center}
+	Московский авиационный институт
+	
+	(Национальный исследовательский университет)
+	
+	Факультет информационных технологий и прикладной математики
+	
+	Кафедра вычислительной математики и программирования
+	
+\end{center}
+\vspace{40ex}
+\begin{center}
+	\textbf{\large{Лабораторная работа №4 по курсу\linebreak \textquotedblleft Операционные системы\textquotedblright}}
+\end{center}
+\vspace{35ex}
+\begin{flushright}
+	\textit{Студент: } Немкова Анастасия Романовна
+	
+	\vspace{2ex}
+	\textit{Группа: } М8О-208Б-22
+	
+	\vspace{2ex}
+	\textit{Преподаватель: } Миронов Евгений Сергеевич
+	
+	\vspace{2ex}
+	\textit{Вариант: 13} 
+	
+	\vspace{2ex}
+	\textit{Оценка: } \underline{\quad\quad\quad\quad\quad\quad}
+	
+	 \vspace{2ex}
+	\textit{Дата: } \underline{\quad\quad\quad\quad\quad\quad}
+	
+	\vspace{2ex}
+	\textit{Подпись: } \underline{\quad\quad\quad\quad\quad\quad}
+	
+\end{flushright}
+
+\vspace{5ex}
+
+\begin{vfill}
+	\begin{center}
+		Москва, 2023
+	\end{center}	
+\end{vfill}
+\newpage
+
+\begin{center}
+\section*{Содержание}   
+\end{center}
+\vspace{5ex}
+\begin{enumerate}
+  \item Репозиторий
+  \item Постановка задачи
+  \item Общие сведения о программе
+  \item Общий метод и алгоритм решения
+  \item Исходный код
+  \item Демонстрация работы программы
+  \item Вывод
+\end{enumerate}
+\newpage
+
+
+\section*{Репозиторий}   
+\vspace{2ex}
+\url{https://github.com/anastasia-nemkova/OS_labs}
+
+\section*{Постановка задачи}   
+\textbf{Цель работы:}
+\vspace{2ex}
+
+Создание динамических библиотек и создание программ, которые используют функции динамических библиотек
+
+\vspace{4ex}
+\textbf{Задание:}
+\vspace{2ex}
+
+Требуется создать динамические библиотеки, которые реализуют определенный функционал. 
+Далее использовать данные библиотеки 2-мя способами:
+\begin{enumerate}
+    \item Во время компиляции (на этапе «линковки»/linking)
+    \item Во время исполнения программы. Библиотеки загружаются в память с помощью интерфейса ОС для работы с динамическими библиотеками
+\end{enumerate}
+В конечном итоге, в лабораторной работе необходимо получить следующие части:
+\begin{itemize}
+    \item Динамические библиотеки, реализующие контракты, которые заданы вариантом;
+    \item Тестовая программа (программа №1), которая используют одну из библиотек, используя знания полученные на этапе компиляции;
+    \item Тестовая программа (программа №2), которая загружает библиотеки, используя только их местоположение и контракты.
+\end{itemize}
+
+Пользовательский ввод для обоих программ должен быть организован следующим образом:
+\begin{enumerate}
+    \item Если пользователь вводит команду «0», то программа переключает одну реализацию контрактов на другую (необходимо только для программы №2).
+    \item «1 arg1 arg2 … argN», где после «1» идут аргументы для первой функции, предусмотренной контрактами. После ввода команды происходит вызов первой функции, и на экране появляется результат её выполнения;
+    \item «2 arg1 arg2 … argM», где после «2» идут аргументы для второй функции, предусмотренной контрактами. После ввода команды происходит вызов второй функции, и на экране появляется результат её выполнения.
+\end{enumerate}
+\newpage
+\textit{Вариант 13:}
+\begin{table}[h]
+\caption{Контракты и реализации функций}
+\medskip
+\begin{adjustwidth}{-1,5cm}{0cm}
+\medskip
+\begin{tabular}{ |>{\raggedright}p{0.1cm}|>{\raggedright}p{3cm}|>{\raggedright}p{2,5cm}|>{\raggedright}p{4cm}|>{\raggedright\arraybackslash}p{5cm}|  }
+\hline
+№ & Описание & Сигнатура & Реализация 1 & Реализация 2 \\
+\hline
+2 & Рассчет производной функции $\cos(x)$ в точке $A$ с приращением $\delta x$ & \texttt{Float Derivative (float A, float deltaX)} & $f'(x) =$ $ \frac{f(A+\text{deltaX}) - f(A)}{\text{deltaX}}$ & $f'(x) = \frac{f(A+\text{deltaX}) - f(A-\text{deltaX})}{2\cdot\text{deltaX}}$ \\
+\hline
+7 & Подсчет площади плоской геометрической фигуры по двум сторонам & \texttt{Float Square(float A, float B)} & Фигура прямоугольник & Фигура прямоугольный треугольник \\
+\hline
+\end{tabular}
+\end{adjustwidth}
+\end{table}
+
+\section*{Общие сведения о программе}
+Программа компилируется из файлов realizations.hpp, realization1.cpp, realization2.cpp,
+static\texttt{\_}main.cpp, dynamic\texttt{\_}main.cpp. Также имеются файлы с тестами lab4\texttt{\_}realiz1\texttt{\_}test.cpp и lab4\texttt{\_}realiz2\texttt{\_}test.cpp  В программе работы были использованы следующие системные вызовы:
+
+\begin{itemize}
+    \item dlsym() - получение адреса функции из динамической библиотеки
+    \item dlopen() - открытие динамической библиотеки
+    \item dlclose() - закрытие динамеческой библиотеки
+    \item dlerror() - возвращение строки, описывающей последнюю ошибку, произошедшую при вызове функций из динамической библиотеки
+\end{itemize}
+
+\section*{Общий метод и алгоритм решения}
+
+У нас имеется статическая и динамическая реализации. Для первой из них мы компилируем основной файл вместе с динамической библиотекой. Для второй используем переменные окружения PATH\texttt{\_}TO\texttt{\_}LIB1 и PATH\texttt{\_}TO\texttt{\_}LIB2 для определения путей к двум различным динамическим библиотекам. 
+
+В динамической реализации основной файл программы загружает библиотеки с помощью системного вызова dlopen и получает указатели на функции из этих библиотек с помощью dlsym. При вводе команды "0" пользователем программа переключает одну библиотеку на другую.
+
+В статической реализации функции из динамических библиотек вызываются напрямую из основного файла программы, так как эти функции уже были статически связаны с основным файлом в процессе компиляции
+\newpage
+
+\section*{Исходный код}
+
+\textbf{realizations.hpp}
+\lstinputlisting{realizations.hpp}
+
+\textbf{realization1.cpp}
+\lstinputlisting{realization1.cpp}
+
+\textbf{realization2.cpp}
+\lstinputlisting{realization2.cpp}
+
+\textbf{static\texttt{\_}main.cpp}
+\lstinputlisting{static_main.cpp}
+
+\textbf{dynamic\texttt{\_}main.cpp}
+\lstinputlisting{dynamic_main.cpp}
+
+\textbf{lab4\texttt{\_}realiz1\texttt{\_}test.cpp}
+\lstinputlisting{lab4_realiz1_test.cpp}
+
+\textbf{lab4\texttt{\_}realiz2\texttt{\_}test.cpp}
+\lstinputlisting{lab4_realiz2_test.cpp}
+
+
+\section*{Демонстрация работы программы}
+
+\textbf{Тесты для статической реализации}
+
+\begin{verbatim}
+arnemkova@LAPTOP-TA2RV74U:~/OS_labs/build$ ./lab4/static_main
+Enter command (0 to exit): 1 3 5
+Result of Derivative: 0.168898
+Enter command (0 to exit): 2 4 5
+Result of Square: 20
+Enter command (0 to exit): 0
+\end{verbatim}
+
+\textbf{Тесты для динамической реализации}
+
+\begin{verbatim}
+arnemkova@LAPTOP-TA2RV74U:~/OS_labs/build$ ./lab4/dynamic_main
+Enter command (0 to switch libraries, 1 or 2 to call functions, q to exit): 1
+ 3 5
+Result of Derivative: 0.168898
+Enter command (0 to switch libraries, 1 or 2 to call functions, q to exit): 2 4 5
+Result of Square: 20
+Enter command (0 to switch libraries, 1 or 2 to call functions, q to exit): 0
+Enter library number (1 or 2): 2
+Enter command (0 to switch libraries, 1 or 2 to call functions, q to exit): 1 3 5
+Result of Derivative: 0.0844492
+Enter command (0 to switch libraries, 1 or 2 to call functions, q to exit): 2 4 5
+Result of Square: 10
+\end{verbatim}
+
+\textbf{Тесты}
+
+\begin{verbatim}
+arnemkova@LAPTOP-TA2RV74U:~/OS_labs/build$ ./tests/lab4_realiz1_test
+[==========] Running 2 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 2 tests from FourthLabTest
+[ RUN      ] FourthLabTest.DerivativeStaticTest
+[       OK ] FourthLabTest.DerivativeStaticTest (0 ms)
+[ RUN      ] FourthLabTest.SquareStaticTest
+[       OK ] FourthLabTest.SquareStaticTest (0 ms)
+[----------] 2 tests from FourthLabTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 2 tests from 1 test suite ran. (0 ms total)
+[  PASSED  ] 2 tests.
+arnemkova@LAPTOP-TA2RV74U:~/OS_labs/build$ ./tests/lab4_realiz2_test
+[==========] Running 2 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 2 tests from FourthLabTest
+[ RUN      ] FourthLabTest.DerivativeStaticTest
+[       OK ] FourthLabTest.DerivativeStaticTest (0 ms)
+[ RUN      ] FourthLabTest.SquareStaticTest
+[       OK ] FourthLabTest.SquareStaticTest (0 ms)
+[----------] 2 tests from FourthLabTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 2 tests from 1 test suite ran. (0 ms total)
+[  PASSED  ] 2 tests.
+\end{verbatim}
+
+\section*{Вывод}
+
+В ходе данной лабораторной работы я познакомилась с использованием динамических библиотек в ОС Linux, которые позволяют программе загружать и использовать функции из библиотек во время выполнения, что обеспечивает гибкость и возможность изменения программы без перекомпиляции. Также я узнала про этапы сборки программы и особенности использования extern "C" при линковке файлов с общим include.  
+
+\end{document}

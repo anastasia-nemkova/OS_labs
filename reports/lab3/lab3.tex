@@ -1,0 +1,275 @@
+\documentclass[a4paper, 14pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,     
+    urlcolor=black,
+}
+\usepackage[english,russian]{babel}
+\usepackage{setspace}
+\singlespacing
+\usepackage{soulutf8}
+\usepackage{indentfirst}
+\usepackage[top=30mm]{geometry}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0mm}
+\usepackage{tocloft}
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+
+
+\lstdefinestyle{mystyle}{
+    language=C++,
+    commentstyle=\color{YellowGreen},
+    keywordstyle=\color{RedViolet},
+    numberstyle=\tiny\color{Grey},
+    stringstyle=\color{BurntOrange},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4,
+    literate=
+        {а}{{\selectfont\char224}}1
+        {б}{{\selectfont\char225}}1
+        {в}{{\selectfont\char226}}1
+        {г}{{\selectfont\char227}}1
+        {д}{{\selectfont\char228}}1
+        {е}{{\selectfont\char229}}1
+        {ё}{{\"e}}1
+        {ж}{{\selectfont\char230}}1
+        {з}{{\selectfont\char231}}1
+        {и}{{\selectfont\char232}}1
+        {й}{{\selectfont\char233}}1
+        {к}{{\selectfont\char234}}1
+        {л}{{\selectfont\char235}}1
+        {м}{{\selectfont\char236}}1
+        {н}{{\selectfont\char237}}1
+        {о}{{\selectfont\char238}}1
+        {п}{{\selectfont\char239}}1
+        {р}{{\selectfont\char240}}1
+        {с}{{\selectfont\char241}}1
+        {т}{{\selectfont\char242}}1
+        {у}{{\selectfont\char243}}1
+        {ф}{{\selectfont\char244}}1
+        {х}{{\selectfont\char245}}1
+        {ц}{{\selectfont\char246}}1
+        {ч}{{\selectfont\char247}}1
+        {ш}{{\selectfont\char248}}1
+        {щ}{{\selectfont\char249}}1
+        {ъ}{{\selectfont\char250}}1
+        {ы}{{\selectfont\char251}}1
+        {ь}{{\selectfont\char252}}1
+        {э}{{\selectfont\char253}}1
+        {ю}{{\selectfont\char254}}1
+        {я}{{\selectfont\char255}}1
+        {А}{{\selectfont\char192}}1
+        {Б}{{\selectfont\char193}}1
+        {В}{{\selectfont\char194}}1
+        {Г}{{\selectfont\char195}}1
+        {Д}{{\selectfont\char196}}1
+        {Е}{{\selectfont\char197}}1
+        {Ё}{{\"E}}1
+        {Ж}{{\selectfont\char198}}1
+        {З}{{\selectfont\char199}}1
+        {И}{{\selectfont\char200}}1
+        {Й}{{\selectfont\char201}}1
+        {К}{{\selectfont\char202}}1
+        {Л}{{\selectfont\char203}}1
+        {М}{{\selectfont\char204}}1
+        {Н}{{\selectfont\char205}}1
+        {О}{{\selectfont\char206}}1
+        {П}{{\selectfont\char207}}1
+        {Р}{{\selectfont\char208}}1
+        {С}{{\selectfont\char209}}1
+        {Т}{{\selectfont\char210}}1
+        {У}{{\selectfont\char211}}1
+        {Ф}{{\selectfont\char212}}1
+        {Х}{{\selectfont\char213}}1
+        {Ц}{{\selectfont\char214}}1
+        {Ч}{{\selectfont\char215}}1
+        {Ш}{{\selectfont\char216}}1
+        {Щ}{{\selectfont\char217}}1
+        {Ъ}{{\selectfont\char218}}1
+        {Ы}{{\selectfont\char219}}1
+        {Ь}{{\selectfont\char220}}1
+        {Э}{{\selectfont\char221}}1
+        {Ю}{{\selectfont\char222}}1
+        {Я}{{\selectfont\char223}}1
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+\thispagestyle{empty}	
+\begin{center}
+	Московский авиационный институт
+	
+	(Национальный исследовательский университет)
+	
+	Факультет информационных технологий и прикладной математики
+	
+	Кафедра вычислительной математики и программирования
+	
+\end{center}
+\vspace{40ex}
+\begin{center}
+	\textbf{\large{Лабораторная работа №3 по курсу\linebreak \textquotedblleft Операционные системы\textquotedblright}}
+\end{center}
+\vspace{35ex}
+\begin{flushright}
+	\textit{Студент: } Немкова Анастасия Романовна
+	
+	\vspace{2ex}
+	\textit{Группа: } М8О-208Б-22
+	
+	\vspace{2ex}
+	\textit{Преподаватель: } Миронов Евгений Сергеевич
+	
+	\vspace{2ex}
+	\textit{Вариант: 15} 
+	
+	\vspace{2ex}
+	\textit{Оценка: } \underline{\quad\quad\quad\quad\quad\quad}
+	
+	 \vspace{2ex}
+	\textit{Дата: } \underline{\quad\quad\quad\quad\quad\quad}
+	
+	\vspace{2ex}
+	\textit{Подпись: } \underline{\quad\quad\quad\quad\quad\quad}
+	
+\end{flushright}
+
+\vspace{5ex}
+
+\begin{vfill}
+	\begin{center}
+		Москва, 2023
+	\end{center}	
+\end{vfill}
+\newpage
+
+\begin{center}
+\section*{Содержание}   
+\end{center}
+\vspace{5ex}
+\begin{enumerate}
+  \item Репозиторий
+  \item Постановка задачи
+  \item Общие сведения о программе
+  \item Общий метод и алгоритм решения
+  \item Исходный код
+  \item Демонстрация работы программы
+  \item Вывод
+\end{enumerate}
+\newpage
+
+\begin{figure}
+\section*{Репозиторий}   
+\vspace{2ex}
+\url{https://github.com/anastasia-nemkova/OS_labs}
+
+\section*{Постановка задачи}   
+\textbf{Цель работы:}
+\vspace{2ex}
+
+Освоение принципов работы с файловыми системами и обеспечение обмена данных между процессами посредством технологии «File mapping»
+
+\vspace{4ex}
+\textbf{Задание:}
+\vspace{2ex}
+
+    \centering
+    \includegraphics[width=0.7\linewidth]{Lab1.png}
+    \label{fig:enter-label}
+\end{figure}
+
+Составить и отладить программу на языке Си, осуществляющую работу с процессами и взаимодействие между ними в одной из двух операционных систем. В результате работы программа (основной процесс) должен создать для решение задачи один или несколько дочерних процессов. Взаимодействие между процессами осуществляется через системные сигналы/события и/или через отображаемые файлы (memory-mapped files).
+
+Родительский процесс создает дочерний процесс. Первой строкой пользователь в консоль родительского процесса вводит имя файла, которое будет использовано для открытия File с таким именем на запись. Перенаправление стандартных потоков ввода-вывода показано на картинке выше. Родительский и дочерний процесс должны быть представлены разными программами. Родительский процесс принимает от пользователя строки произвольной длины и пересылает их дочернему процессу. Процесс child проверяет строки на валидность правилу. Если строка соответствует правилу, то она выводится в стандартный поток вывода дочернего процесса, иначе в родительский процесс отправляется информация об ошибке. Родительский процесс полученные от child ошибки выводит в стандартный поток вывода\newline
+
+\textit{Вариант 15)} Правило проверки: строка должна начинаться с заглавной буквы
+
+\section*{Общие сведения о программе}
+
+Программа компилируется из файлов parent.cpp с основным процессом, child.cpp с дочерним процессом и utils.cpp c вспомагательными функциями. Также имеются заголовочные файлы parent.hpp и utils.hpp и файл с тестами lab3\texttt{\_}test.cpp. В программе работы были использованы следующие системные вызовы:
+
+\begin{itemize}
+    \item sem\texttt{\_}unlink() - удаление именного семафора
+    \item shm\texttt{\_}unlink() - удаление именованного сегмента разделяемой памяти 
+    \item shm\texttt{\_}open() - создание или открытие объекта разделяемой памяти 
+    \item ftruncate() - установка размера разделяемой памяти
+    \item mmap() - отображение файлов в адресное пространство процесса 
+    \item sem\texttt{\_}open() - создание или открытие именованных семафоров
+    \item fork() - создание нового процесса
+    \item sem\texttt{\_}post() - увеличение значения(разблокировка) семафора
+    \item sem\texttt{\_}wait() - уменьшение значения(блокировка) семафора
+    \item sem\texttt{\_}close() - закрытие именованного семафора
+    \item munmap() - отключение отображения объекта в адресное пространство процесса
+\end{itemize}
+
+\section*{Общий метод и алгоритм решения}
+
+Основной процесс считывает строки из стандартного ввода и записывает их в разделяемую память. После записи процесс уведомляет дочерний процесс о наличии новых данных с помощью семафора. Дочерний процесс, получив уведомление, считывает данные из разделяемой памяти, обрабатывает их, если строки соответствуют правилу - записывает из в файл, иначе записывает ошибочную строку(с маленькой буквы) обратно в разделяемую память, после чего уведомляет основной процесс о готовности результата. После обработки всех строк главный процесс отправляет пустую строку в общую память, чтобы дочерний процесс завершил свою работу. После завершения дочернего процесса главный процесс закрывает общие ресурсы и освобождает память.
+\newpage
+
+\section*{Исходный код}
+
+\textbf{parent.hpp}
+\lstinputlisting{parent.hpp}
+
+\textbf{parent.cpp}
+\lstinputlisting{parent.cpp}
+
+\textbf{utils.hpp}
+\lstinputlisting{utils.hpp}
+
+\textbf{utils.cpp}
+\lstinputlisting{utils.cpp}
+
+\textbf{child.cpp}
+\lstinputlisting{child.cpp}
+
+\textbf{main.cpp}
+\lstinputlisting{main.cpp}
+
+\textbf{lab1\texttt{\_}test.cpp}
+\lstinputlisting{lab3_test.cpp}
+\newpage
+
+\section*{Демонстрация работы программы}
+\begin{verbatim}
+arnemkova@LAPTOP-TA2RV74U:~/OS_labs/build$ ./tests/lab3_test
+[==========] Running 4 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 4 tests from thirdLabTests
+[ RUN      ] thirdLabTests.simpleTest
+[       OK ] thirdLabTests.simpleTest (2 ms)
+[ RUN      ] thirdLabTests.emptystrTest
+[       OK ] thirdLabTests.emptystrTest (1 ms)
+[ RUN      ] thirdLabTests.sonneTest
+[       OK ] thirdLabTests.sonneTest (2 ms)
+[ RUN      ] thirdLabTests.deathTest
+[       OK ] thirdLabTests.deathTest (2 ms)
+[----------] 4 tests from thirdLabTests (9 ms total)
+
+[----------] Global test environment tear-down
+[==========] 4 tests from 1 test suite ran. (9 ms total)
+[  PASSED  ] 4 tests.
+\end{verbatim}
+
+\section*{Вывод}
+
+В ходе выполнения данной лабораторной работы я изучила принципы работы с файловыми системами и технологию обмена данными между процессами с использованием файловых отображений в память. Я познакомилась с системными вызовами, такими как open, mmap, munmap, shm\texttt{\_}open, ftruncate, sem\texttt{\_}open, sem\texttt{\_}wait, sem\texttt{\_}post. Также изучила работу с семафорами для обеспечения синхронизации доступа к общим ресурсам. При этом я узнала о понятиях таблицы страниц, page hit и page fault, которые играют важную роль при работе с общими сегментами памяти.
+
+\end{document}
