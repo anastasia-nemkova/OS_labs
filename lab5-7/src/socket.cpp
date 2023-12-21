@@ -9,21 +9,21 @@ void sendMessage(zmq::socket_t& socket, const std::string& msg) {
 
 std::string receiveMessage(zmq::socket_t& socket) {
     zmq::message_t msg;
-    int msgReciev;
+    int msgReceiv;
     try {
         std::optional<size_t> result = socket.recv(msg);
         if (result) {
-            msgReciev = static_cast<int>(*result);
+            msgReceiv = static_cast<int>(*result);
         }
     }
     catch (...) {
-        msgReciev = 0;
+        msgReceiv = 0;
     }
-    if (msgReciev == 0) {
+    if (msgReceiv == 0) {
         return "Error: Node is unavailable";
     }
-    std::string received_msg(static_cast<char*>(msg.data()), msg.size());
-    return received_msg;
+    std::string receivedMsg(static_cast<char*>(msg.data()), msg.size());
+    return receivedMsg;
 
 }
 

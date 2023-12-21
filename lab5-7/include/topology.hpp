@@ -10,7 +10,6 @@ private:
     listType list;
 public:
     Topology() : list() {}
-    ~Topology() {}
 
     void insert(int id, int parentId);
     int find(int id);
