@@ -69,3 +69,16 @@ target_include_directories(lab5-7_test PRIVATE ../lab5-7/include)
 target_link_libraries(lab5-7_test PRIVATE zmq)
 
 add_test(lab5-7_test lab5-7_test)
+
+# CP
+
+add_executable(cp_test cp_test.cpp ../cp/src/server_utils.cpp ../cp/include/server_utils.hpp
+        ../cp/src/client_utils.cpp ../cp/include/client_utils.hpp
+        ../cp/src/shared_memory.cpp ../cp/include/shared_memory.hpp)
+
+target_link_libraries(cp_test PRIVATE GTest::GTest)
+target_include_directories(cp_test PRIVATE ../cp/include)
+target_link_libraries(cp_test PRIVATE pthread)
+target_link_libraries(cp_test PRIVATE rt)
+
+add_test(cp_test cp_test)
